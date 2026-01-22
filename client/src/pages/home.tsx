@@ -271,7 +271,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-muted/30 text-foreground">
+      <section className="py-24 bg-foreground text-background">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -281,19 +281,19 @@ export default function Home() {
             className="grid lg:grid-cols-2 gap-12 items-center"
           >
             <div>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6" data-testid="text-about-section">
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 text-background" data-testid="text-about-section">
                 Hey, I'm <em className="font-serif">Shawny.</em>
               </h2>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed" data-testid="text-bio-1">
+              <p className="text-lg text-background/70 mb-6 leading-relaxed" data-testid="text-bio-1">
                 I'm a Learning & Development strategist and instructional designer based in New York City.
               </p>
-              <p className="text-lg text-muted-foreground mb-6 leading-relaxed" data-testid="text-bio-2">
+              <p className="text-lg text-background/70 mb-6 leading-relaxed" data-testid="text-bio-2">
                 I help startups and growing teams turn knowledge into impact, through scalable learning systems, smart design, and AI-powered tools that actually show ROI.
               </p>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed" data-testid="text-bio-3">
+              <p className="text-lg text-background/70 mb-8 leading-relaxed" data-testid="text-bio-3">
                 If you're building training from scratch, leveling up your people, or need proof that L&D is moving the business forward, let's connect.
               </p>
-              <Button variant="outline" size="lg" className="group" asChild data-testid="button-work-together">
+              <Button variant="outline" size="lg" className="group bg-background text-foreground hover:bg-background/90 border-background" asChild data-testid="button-work-together">
                 <a href="#contact">
                   Let's Connect!
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -302,21 +302,21 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-4">
-                <div className="bg-muted rounded-xl p-6 aspect-square flex items-center justify-center">
-                  <span className="text-6xl font-serif italic text-muted-foreground/50" data-testid="text-initial-s">S</span>
+                <div className="bg-background/10 rounded-xl p-6 aspect-square flex items-center justify-center">
+                  <span className="text-6xl font-serif italic text-background/50" data-testid="text-initial-s">S</span>
                 </div>
-                <div className="bg-card border border-border rounded-xl p-4">
-                  <p className="text-sm font-medium mb-1" data-testid="text-trait-creative">Creative</p>
-                  <p className="text-xs text-muted-foreground" data-testid="text-trait-creative-sub">Problem Solver</p>
+                <div className="bg-background/10 border border-background/20 rounded-xl p-4">
+                  <p className="text-sm font-medium mb-1 text-background" data-testid="text-trait-creative">Creative</p>
+                  <p className="text-xs text-background/60" data-testid="text-trait-creative-sub">Problem Solver</p>
                 </div>
               </div>
               <div className="space-y-4 pt-8">
-                <div className="bg-card border border-border rounded-xl p-4">
-                  <p className="text-sm font-medium mb-1" data-testid="text-trait-detail">Detail</p>
-                  <p className="text-xs text-muted-foreground" data-testid="text-trait-detail-sub">Oriented</p>
+                <div className="bg-background/10 border border-background/20 rounded-xl p-4">
+                  <p className="text-sm font-medium mb-1 text-background" data-testid="text-trait-detail">Detail</p>
+                  <p className="text-xs text-background/60" data-testid="text-trait-detail-sub">Oriented</p>
                 </div>
-                <div className="bg-muted rounded-xl p-6 aspect-square flex items-center justify-center">
-                  <span className="text-6xl font-serif italic text-muted-foreground/50" data-testid="text-initial-h">H</span>
+                <div className="bg-background/10 rounded-xl p-6 aspect-square flex items-center justify-center">
+                  <span className="text-6xl font-serif italic text-background/50" data-testid="text-initial-h">H</span>
                 </div>
               </div>
             </div>
