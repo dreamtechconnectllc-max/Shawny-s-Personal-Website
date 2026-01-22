@@ -89,7 +89,7 @@ export default function Home() {
             <a href="#about" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-about">About</a>
             <a href="#services" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-services">Services</a>
             <a href="#projects" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-projects">Projects</a>
-            <a href="#contact" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-contact">Contact</a>
+            <a href="#contact" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-contact">L&D AI Products</a>
           </div>
           <Button variant="outline" className="bg-background text-foreground hover:bg-background/90 border-background" asChild data-testid="button-cta-header">
             <a href="#contact">Lets Connect!</a>
