@@ -40,19 +40,19 @@ const projects = [
 
 const services = [
   {
-    icon: Palette,
-    title: "Branding",
-    description: "Create strong impressions. A 'brand' is the gut feeling about a product or company, impacting overall success. It's more than just visuals; it's how they combine to build trust."
-  },
-  {
     icon: Layout,
-    title: "Web Design",
-    description: "Effective design shapes first impressions and user experiences. Our custom, research-driven approach ensures your digital presence is both visually appealing and goal-oriented."
+    title: "LMS Implementation",
+    description: "Expert implementation and configuration of learning management systems tailored to your organization's needs. Seamless integration with existing workflows and tools."
   },
   {
     icon: Code,
-    title: "Development",
-    description: "We use modern web technologies for speed and scalability, allowing faster builds and better performance, making it easy for teams to manage without complex setups."
+    title: "Course & Program Creation",
+    description: "Design and develop engaging instructor-led training (ILT) and virtual instructor-led training (VILT) programs that drive measurable learning outcomes."
+  },
+  {
+    icon: Palette,
+    title: "L&D Team Development",
+    description: "Build and scale your learning and development team with strategic guidance, best practices, and hands-on coaching to maximize team effectiveness."
   }
 ];
 
