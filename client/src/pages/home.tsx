@@ -174,7 +174,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" className="py-24 bg-muted/30 text-foreground">
+      <section id="services" className="py-24 bg-foreground text-background">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -183,8 +183,8 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-medium mb-4" data-testid="text-services-title">Services</h2>
-            <p className="text-muted-foreground max-w-2xl" data-testid="text-services-description">What I can help you with.</p>
+            <h2 className="text-3xl md:text-4xl font-medium mb-4 text-background" data-testid="text-services-title">Services</h2>
+            <p className="text-background/70 max-w-2xl" data-testid="text-services-description">What I can help you with.</p>
           </motion.div>
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
