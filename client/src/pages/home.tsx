@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, Mail, Linkedin, ExternalLink, Palette, Layout, Code } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import shawnyImage from "@assets/Untitled_design_(4)_1769115041947.png";
 import logoImage from "@assets/ChatGPT_Image_Jan_22,_2026,_04_04_22_PM_1769116122953.png";
@@ -88,6 +88,10 @@ export default function Home() {
     message: ""
   });
 
+  const { scrollY } = useScroll();
+  const shawnyX = useTransform(scrollY, [0, 500], [0, 150]);
+  const hargroveX = useTransform(scrollY, [0, 500], [0, -150]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
@@ -98,73 +102,77 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <div className="min-h-screen bg-foreground text-background">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-foreground/80 backdrop-blur-md border-b border-border/20">
         <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
           <a href="#top" className="flex items-center" data-testid="link-home" aria-label="Go to top of page">
             <img src={logoImage} alt="SH Logo" className="h-14 w-auto" data-testid="img-logo" />
           </a>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-about">About</a>
-            <a href="#services" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-services">Services</a>
-            <a href="#projects" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-projects">Projects</a>
-            <a href="#contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-contact">Contact</a>
+            <a href="#about" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-about">About</a>
+            <a href="#services" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-services">Services</a>
+            <a href="#projects" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-projects">Projects</a>
+            <a href="#contact" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-contact">Contact</a>
           </div>
-          <Button asChild data-testid="button-cta-header">
+          <Button variant="outline" className="bg-background text-foreground hover:bg-background/90 border-background" asChild data-testid="button-cta-header">
             <a href="#contact">Let's Talk</a>
           </Button>
         </nav>
       </header>
 
-      <section id="top" className="relative min-h-screen flex items-center pt-20">
-        <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
+      <section id="top" className="relative min-h-screen bg-foreground overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 pt-32 pb-20 relative">
+          <div className="relative z-10">
+            <motion.h1 
+              style={{ x: shawnyX }}
+              className="text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold leading-none tracking-tight text-background"
+              data-testid="text-hero-shawny"
+            >
+              Shawny
+            </motion.h1>
+            <motion.h1 
+              style={{ x: hargroveX }}
+              className="text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold leading-none tracking-tight text-background -mt-8 md:-mt-16 lg:-mt-24"
+              data-testid="text-hero-hargrove"
+            >
+              Hargrove
+            </motion.h1>
+          </div>
+          
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="order-2 lg:order-1"
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="absolute right-6 md:right-12 lg:right-24 bottom-0 z-20"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-lg text-muted-foreground" data-testid="text-made-by">Made by</span>
-              <span className="text-5xl md:text-6xl font-serif italic" data-testid="text-name-stylized">Shawny</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6" data-testid="text-hero-title">
+            <img 
+              src={shawnyImage}
+              alt="Shawny Hargrove"
+              className="w-64 md:w-80 lg:w-[450px] h-auto object-cover"
+              data-testid="img-profile"
+            />
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="relative z-30 mt-8 max-w-md"
+          >
+            <p className="text-xl md:text-2xl text-background mb-6" data-testid="text-hero-title">
               Shawny Hargrove—Web designer & creative professional based in Atlanta, GA.
-            </h1>
-            <p className="text-lg text-muted-foreground mb-8 max-w-lg" data-testid="text-hero-description">
-              I help good folks do good things with memorable brands & websites—<em className="font-serif">enjoying life</em> all the while.
             </p>
-            <Button size="lg" className="group" asChild data-testid="button-cta-hero">
+            <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild data-testid="button-cta-hero">
               <a href="#contact">
                 Let's work together
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </a>
             </Button>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="order-1 lg:order-2 flex justify-center lg:justify-end"
-          >
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-tr from-muted/50 to-transparent rounded-3xl blur-2xl" />
-              <img 
-                src={shawnyImage}
-                alt="Shawny Hargrove"
-                className="relative w-80 md:w-96 lg:w-[420px] h-auto object-cover rounded-2xl"
-                data-testid="img-profile"
-              />
-              <div className="absolute -bottom-4 -left-4 bg-card border border-border rounded-xl px-4 py-3 shadow-lg">
-                <p className="text-sm font-medium" data-testid="text-name-card">Shawny</p>
-                <p className="text-xs text-muted-foreground" data-testid="text-lastname-card">Hargrove</p>
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>
 
-      <section id="about" className="py-24 bg-muted/30">
+      <section id="about" className="py-24 bg-background text-foreground">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -189,7 +197,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" className="py-24">
+      <section id="services" className="py-24 bg-muted/30 text-foreground">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -219,7 +227,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="projects" className="py-24 bg-muted/30">
+      <section id="projects" className="py-24 bg-background text-foreground">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -271,7 +279,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24">
+      <section className="py-24 bg-muted/30 text-foreground">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -321,7 +329,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 overflow-hidden bg-muted/30">
+      <section className="py-16 overflow-hidden bg-background text-foreground">
         <div className="flex animate-marquee">
           {[...Array(2)].map((_, setIndex) => (
             <div key={setIndex} className="flex shrink-0 gap-8 px-4">
@@ -335,7 +343,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="py-24">
+      <section id="contact" className="py-24 bg-muted/30 text-foreground">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -436,7 +444,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="py-8 border-t border-border">
+      <footer className="py-8 border-t border-border bg-background text-foreground">
         <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground" data-testid="text-copyright">
             © {new Date().getFullYear()} Shawny Hargrove. All rights reserved.
