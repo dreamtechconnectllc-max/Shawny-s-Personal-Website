@@ -143,12 +143,12 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="absolute right-6 md:right-12 lg:right-24 bottom-0 z-20"
+            className="absolute right-0 md:right-0 lg:right-0 bottom-0 z-20"
           >
             <img 
               src={shawnyImage}
               alt="Shawny Hargrove"
-              className="w-64 md:w-80 lg:w-[450px] h-auto object-cover"
+              className="w-80 md:w-[400px] lg:w-[550px] xl:w-[650px] h-auto object-cover"
               data-testid="img-profile"
             />
           </motion.div>
