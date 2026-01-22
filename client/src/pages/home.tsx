@@ -91,9 +91,6 @@ export default function Home() {
             <a href="#projects" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-projects">Projects</a>
             <a href="#ld-ai-products" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-ld-ai-products">L&D AI Products</a>
           </div>
-          <Button variant="outline" className="bg-background text-foreground hover:bg-background/90 border-background" asChild data-testid="button-cta-header">
-            <a href="#contact">Lets Connect!</a>
-          </Button>
         </nav>
       </header>
 
@@ -137,11 +134,11 @@ export default function Home() {
             className="absolute bottom-12 left-6 z-30 max-w-md"
           >
             <p className="text-lg md:text-xl lg:text-2xl text-background mb-6" data-testid="text-hero-title">
-              Scaling teams with strategic learning solutions that meet measurable goals businesses care about. Let's Connect!
+              Scaling teams with strategic learning solutions that meet measurable goals businesses care about.
             </p>
             <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild data-testid="button-cta-hero">
               <a href="#contact">
-                Let's work together
+                Let's Connect!
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </a>
             </Button>
@@ -295,7 +292,7 @@ export default function Home() {
               </p>
               <Button variant="outline" size="lg" className="group" asChild data-testid="button-work-together">
                 <a href="#contact">
-                  Let's work together
+                  Let's Connect!
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </Button>
