@@ -5,7 +5,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { ArrowRight, ExternalLink, Palette, Layout, Code, Sparkles, BarChart3, Target } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import shawnyImage from "@assets/Untitled_design_(4)_1769115041947.png";
-import logoImage from "@assets/ChatGPT_Image_Jan_22,_2026,_04_04_22_PM_1769116122953.png";
+import logoImage from "@assets/New_DreamTech_Logos_1769121798107.png";
 
 const projects = [
   {
