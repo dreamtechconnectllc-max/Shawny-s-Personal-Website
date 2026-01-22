@@ -125,14 +125,14 @@ export default function Home() {
           <div className="relative z-10">
             <motion.h1 
               style={{ x: shawnyX }}
-              className="text-[6rem] md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-bold leading-none tracking-tight text-background"
+              className="text-[5rem] md:text-[8rem] lg:text-[11rem] xl:text-[14rem] font-bold leading-none tracking-tight text-background"
               data-testid="text-hero-shawny"
             >
               Shawny
             </motion.h1>
             <motion.h1 
               style={{ x: hargroveX }}
-              className="text-[6rem] md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-bold leading-none tracking-tight text-background -mt-4 md:-mt-12 lg:-mt-16 xl:-mt-24"
+              className="text-[5rem] md:text-[8rem] lg:text-[11rem] xl:text-[14rem] font-bold leading-none tracking-tight text-background -mt-4 md:-mt-8 lg:-mt-12 xl:-mt-16"
               data-testid="text-hero-hargrove"
             >
               Hargrove
