@@ -230,6 +230,7 @@ export default function Home() {
             opts={{
               align: "start",
               loop: true,
+              duration: 30,
             }}
             className="w-full"
             data-testid="carousel-projects"
@@ -266,8 +267,8 @@ export default function Home() {
               ))}
             </CarouselContent>
             <div className="flex justify-center gap-4 mt-8">
-              <CarouselPrevious className="static translate-y-0" data-testid="button-carousel-prev" />
-              <CarouselNext className="static translate-y-0" data-testid="button-carousel-next" />
+              <CarouselPrevious className="static translate-y-0 h-12 w-12 border-2 border-foreground bg-foreground text-background hover:bg-foreground/90 hover:text-background" data-testid="button-carousel-prev" />
+              <CarouselNext className="static translate-y-0 h-12 w-12 border-2 border-foreground bg-foreground text-background hover:bg-foreground/90 hover:text-background" data-testid="button-carousel-next" />
             </div>
           </Carousel>
         </div>
