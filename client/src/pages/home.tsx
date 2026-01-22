@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { ArrowRight, Mail, Linkedin, ExternalLink, Palette, Layout, Code } from "lucide-react";
+import { ArrowRight, Mail, Linkedin, ExternalLink, Palette, Layout, Code, Sparkles, BarChart3, Target } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import shawnyImage from "@assets/Untitled_design_(4)_1769115041947.png";
@@ -89,7 +89,7 @@ export default function Home() {
             <a href="#about" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-about">About</a>
             <a href="#services" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-services">Services</a>
             <a href="#projects" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-projects">Projects</a>
-            <a href="#contact" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-contact">L&D AI Products</a>
+            <a href="#ld-ai-products" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-ld-ai-products">L&D AI Products</a>
           </div>
           <Button variant="outline" className="bg-background text-foreground hover:bg-background/90 border-background" asChild data-testid="button-cta-header">
             <a href="#contact">Lets Connect!</a>
@@ -334,6 +334,50 @@ export default function Home() {
               ))}
             </div>
           ))}
+        </div>
+      </section>
+
+      <section id="ld-ai-products" className="py-24 bg-background text-foreground">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-medium mb-4" data-testid="text-ld-ai-title">L&D AI Products</h2>
+            <p className="text-muted-foreground max-w-2xl" data-testid="text-ld-ai-description">AI-powered learning and development solutions to scale your team.</p>
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid md:grid-cols-3 gap-8"
+          >
+            <Card className="h-full border-border/50 hover-elevate" data-testid="card-ld-product-0">
+              <CardContent className="p-6">
+                <Sparkles className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
+                <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-0">AI Course Builder</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-0">Quickly generate engaging course content with AI assistance. Create modules, quizzes, and assessments in minutes.</p>
+              </CardContent>
+            </Card>
+            <Card className="h-full border-border/50 hover-elevate" data-testid="card-ld-product-1">
+              <CardContent className="p-6">
+                <BarChart3 className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
+                <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-1">Smart Analytics</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-1">Track learner progress with intelligent insights. Identify knowledge gaps and optimize training effectiveness.</p>
+              </CardContent>
+            </Card>
+            <Card className="h-full border-border/50 hover-elevate" data-testid="card-ld-product-2">
+              <CardContent className="p-6">
+                <Target className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
+                <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-2">Personalized Paths</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-2">AI-driven learning paths that adapt to each team member's skill level and learning pace.</p>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </section>
 
