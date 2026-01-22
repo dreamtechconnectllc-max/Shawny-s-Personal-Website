@@ -8,6 +8,7 @@ import { ArrowRight, Mail, Linkedin, ExternalLink, Palette, Layout, Code } from 
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import shawnyImage from "@assets/Untitled_design_(4)_1769115041947.png";
+import logoImage from "@assets/ChatGPT_Image_Jan_22,_2026,_04_04_22_PM_1769116122953.png";
 
 const projects = [
   {
@@ -100,8 +101,8 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-          <a href="#top" className="text-xl font-semibold tracking-tight" data-testid="link-home" aria-label="Go to top of page">
-            Shawny<span className="text-muted-foreground">.</span>
+          <a href="#top" className="flex items-center" data-testid="link-home" aria-label="Go to top of page">
+            <img src={logoImage} alt="SH Logo" className="h-10 w-auto" data-testid="img-logo" />
           </a>
           <div className="hidden md:flex items-center gap-8">
             <a href="#about" className="text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-about">About</a>
