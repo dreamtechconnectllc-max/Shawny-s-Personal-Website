@@ -135,10 +135,10 @@ export default function Home() {
             className="max-w-4xl"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-relaxed mb-8" data-testid="text-about-intro">
-              Hey, <span className="font-serif italic">Shawny</span> here. I'm a web designer, brand strategist based in Atlanta, GA. I love helping good folks do good things with memorable brands & websites—<em className="font-serif">enjoying life</em> all the while.
+              Hey, <span className="font-serif italic">Shawny</span> here. I'm an instructional designer based in New York City. I love helping organizations build learning experiences that actually <em className="font-serif">work</em>.
             </h2>
             <p className="text-lg text-muted-foreground mb-8" data-testid="text-about-description">
-              If you need help bringing a dream, idea, or business to life with pro visuals like websites & branding, or want to take an existing project to the next level—give me a shout.
+              If you need help designing impactful training programs, implementing an LMS, or scaling your L&D initiatives—let's connect.
             </p>
             <Button variant="outline" size="lg" className="group" asChild data-testid="button-start-project">
               <a href="#contact">
