@@ -143,7 +143,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="absolute right-0 bottom-0 z-20 h-[70vh] md:h-[80vh] lg:h-[85vh]"
+            className="absolute -right-12 md:-right-16 lg:-right-20 bottom-0 z-20 h-[70vh] md:h-[80vh] lg:h-[85vh]"
           >
             <img 
               src={shawnyImage}
