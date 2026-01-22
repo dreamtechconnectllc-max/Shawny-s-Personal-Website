@@ -160,7 +160,7 @@ export default function Home() {
             className="absolute bottom-12 left-6 z-30 max-w-md"
           >
             <p className="text-lg md:text-xl lg:text-2xl text-background mb-6" data-testid="text-hero-title">
-              Shawny Hargrove—Web designer & creative professional based in Atlanta, GA.
+              Scaling teams with strategic learning solutions that meet measurable goals businesses care about. Let's Connect!
             </p>
             <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild data-testid="button-cta-hero">
               <a href="#contact">
