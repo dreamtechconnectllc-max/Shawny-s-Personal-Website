@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { ArrowRight, Mail, Linkedin, ExternalLink, Palette, Layout, Code } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
@@ -34,30 +35,6 @@ const projects = [
     tags: ["Branding", "Design", "Support"],
     year: "2024",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=600&fit=crop"
-  },
-  {
-    id: "urban-roots",
-    title: "Urban Roots",
-    category: "Non-Profit",
-    tags: ["Design", "Development"],
-    year: "2025",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop"
-  },
-  {
-    id: "stellar-studio",
-    title: "Stellar Studio",
-    category: "Creative Agency",
-    tags: ["Branding", "Design", "Development"],
-    year: "2024",
-    image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=600&fit=crop"
-  },
-  {
-    id: "nova-tech",
-    title: "Nova Tech",
-    category: "SaaS",
-    tags: ["Design", "Development", "Support"],
-    year: "2025",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop"
   }
 ];
 
@@ -239,43 +216,50 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-medium mb-4" data-testid="text-projects-title">Featured projects</h2>
             <p className="text-muted-foreground max-w-2xl" data-testid="text-projects-description">A selection of recent work across branding, web design, and development.</p>
           </motion.div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="overflow-visible border-border/50 hover-elevate" data-testid={`card-project-${project.id}`}>
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-t-md">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                      data-testid={`img-project-${project.id}`}
-                    />
-                  </div>
-                  <CardContent className="p-5">
-                    <div className="flex items-center justify-between gap-2 mb-2">
-                      <h3 className="font-semibold" data-testid={`text-project-title-${project.id}`}>{project.title}</h3>
-                      <span className="text-xs text-muted-foreground" data-testid={`text-project-year-${project.id}`}>{project.year}</span>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+            data-testid="carousel-projects"
+          >
+            <CarouselContent className="-ml-4">
+              {projects.map((project) => (
+                <CarouselItem key={project.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <Card className="overflow-visible border-border/50 hover-elevate" data-testid={`card-project-${project.id}`}>
+                    <div className="relative aspect-[4/3] overflow-hidden rounded-t-md">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                        data-testid={`img-project-${project.id}`}
+                      />
                     </div>
-                    <p className="text-sm text-muted-foreground mb-3" data-testid={`text-project-category-${project.id}`}>{project.category}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag, tagIndex) => (
-                        <Badge key={tag} variant="secondary" className="text-xs" data-testid={`badge-project-${project.id}-tag-${tagIndex}`}>{tag}</Badge>
-                      ))}
-                    </div>
-                    <Button size="sm" variant="outline" className="w-full gap-2" data-testid={`button-view-project-${project.id}`} aria-label={`View ${project.title} project`}>
-                      View Project <ExternalLink className="h-3 w-3" aria-hidden="true" />
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                    <CardContent className="p-5">
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <h3 className="font-semibold" data-testid={`text-project-title-${project.id}`}>{project.title}</h3>
+                        <span className="text-xs text-muted-foreground" data-testid={`text-project-year-${project.id}`}>{project.year}</span>
+                      </div>
+                      <p className="text-sm text-muted-foreground mb-3" data-testid={`text-project-category-${project.id}`}>{project.category}</p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.tags.map((tag, tagIndex) => (
+                          <Badge key={tag} variant="secondary" className="text-xs" data-testid={`badge-project-${project.id}-tag-${tagIndex}`}>{tag}</Badge>
+                        ))}
+                      </div>
+                      <Button size="sm" variant="outline" className="w-full gap-2" data-testid={`button-view-project-${project.id}`} aria-label={`View ${project.title} project`}>
+                        View Project <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center gap-4 mt-8">
+              <CarouselPrevious className="static translate-y-0" data-testid="button-carousel-prev" />
+              <CarouselNext className="static translate-y-0" data-testid="button-carousel-next" />
+            </div>
+          </Carousel>
         </div>
       </section>
 
