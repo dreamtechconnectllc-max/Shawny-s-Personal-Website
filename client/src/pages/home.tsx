@@ -89,8 +89,8 @@ export default function Home() {
   });
 
   const { scrollY } = useScroll();
-  const shawnyX = useTransform(scrollY, [0, 500], [0, 150]);
-  const hargroveX = useTransform(scrollY, [0, 500], [0, -150]);
+  const shawnyX = useTransform(scrollY, [0, 500], [0, 80]);
+  const hargroveX = useTransform(scrollY, [0, 500], [0, -80]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -143,7 +143,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="absolute -right-24 md:-right-32 lg:-right-48 bottom-0 z-20 h-[70vh] md:h-[80vh] lg:h-[85vh]"
+            className="absolute -right-32 md:-right-48 lg:-right-64 xl:-right-80 bottom-0 z-20 h-[70vh] md:h-[80vh] lg:h-[85vh]"
           >
             <img 
               src={shawnyImage}
