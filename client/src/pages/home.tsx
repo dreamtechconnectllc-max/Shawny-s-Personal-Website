@@ -324,20 +324,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-16 overflow-hidden bg-background text-foreground">
-        <div className="flex animate-marquee">
-          {[...Array(2)].map((_, setIndex) => (
-            <div key={setIndex} className="flex shrink-0 gap-8 px-4">
-              {["Creative Thinker", "Web Designer", "Brand Strategist", "Problem Solver", "Detail Oriented", "Collaborative"].map((trait) => (
-                <span key={`${setIndex}-${trait}`} className="text-4xl md:text-5xl font-medium text-muted-foreground/30 whitespace-nowrap">
-                  {trait} <span className="text-muted-foreground/20 mx-4" aria-hidden="true">•</span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </section>
-
+      
       <section id="ld-ai-products" className="py-24 bg-background text-foreground">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
