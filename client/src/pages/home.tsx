@@ -115,7 +115,7 @@ export default function Home() {
             <a href="#contact" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-contact">Contact</a>
           </div>
           <Button variant="outline" className="bg-background text-foreground hover:bg-background/90 border-background" asChild data-testid="button-cta-header">
-            <a href="#contact">Let's Talk</a>
+            <a href="#contact">Lets Connect!</a>
           </Button>
         </nav>
       </header>
