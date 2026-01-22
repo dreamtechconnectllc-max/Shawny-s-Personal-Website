@@ -120,19 +120,19 @@ export default function Home() {
         </nav>
       </header>
 
-      <section id="top" className="relative min-h-screen bg-foreground overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 pt-32 pb-20 relative">
+      <section id="top" className="relative h-screen bg-foreground overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 pt-32 h-full relative">
           <div className="relative z-10">
             <motion.h1 
               style={{ x: shawnyX }}
-              className="text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold leading-none tracking-tight text-background"
+              className="text-[6rem] md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-bold leading-none tracking-tight text-background"
               data-testid="text-hero-shawny"
             >
               Shawny
             </motion.h1>
             <motion.h1 
               style={{ x: hargroveX }}
-              className="text-[8rem] md:text-[12rem] lg:text-[16rem] font-bold leading-none tracking-tight text-background -mt-8 md:-mt-16 lg:-mt-24"
+              className="text-[6rem] md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-bold leading-none tracking-tight text-background -mt-4 md:-mt-12 lg:-mt-16 xl:-mt-24"
               data-testid="text-hero-hargrove"
             >
               Hargrove
@@ -140,15 +140,15 @@ export default function Home() {
           </div>
           
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="absolute right-0 md:right-0 lg:right-0 bottom-0 z-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="absolute right-0 bottom-0 z-20 h-[70vh] md:h-[80vh] lg:h-[85vh]"
           >
             <img 
               src={shawnyImage}
               alt="Shawny Hargrove"
-              className="w-80 md:w-[400px] lg:w-[550px] xl:w-[650px] h-auto object-cover"
+              className="h-full w-auto object-contain object-bottom"
               data-testid="img-profile"
             />
           </motion.div>
@@ -157,9 +157,9 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="relative z-30 mt-8 max-w-md"
+            className="absolute bottom-12 left-6 z-30 max-w-md"
           >
-            <p className="text-xl md:text-2xl text-background mb-6" data-testid="text-hero-title">
+            <p className="text-lg md:text-xl lg:text-2xl text-background mb-6" data-testid="text-hero-title">
               Shawny Hargrove—Web designer & creative professional based in Atlanta, GA.
             </p>
             <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild data-testid="button-cta-hero">
