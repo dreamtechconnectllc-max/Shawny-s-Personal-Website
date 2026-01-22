@@ -86,6 +86,7 @@ export default function Home() {
             <img src={logoImage} alt="SH Logo" className="h-14 w-auto" data-testid="img-logo" />
           </a>
           <div className="hidden md:flex items-center gap-8">
+            <a href="#about" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-about">About</a>
             <a href="#services" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-services">Services</a>
             <a href="#projects" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-projects">Projects</a>
             <a href="#ld-ai-products" className="text-sm text-background/70 hover:text-background transition-colors" data-testid="link-ld-ai-products">L&D AI Products</a>
@@ -270,6 +271,70 @@ export default function Home() {
               <CarouselNext className="static translate-y-0 h-12 w-12 border-2 border-foreground bg-foreground text-background hover:bg-foreground/90 hover:text-background" data-testid="button-carousel-next" />
             </div>
           </Carousel>
+        </div>
+      </section>
+
+      <section className="py-24 bg-muted/30 text-foreground">
+        <div className="max-w-7xl mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="grid lg:grid-cols-2 gap-12 items-center"
+          >
+            <div>
+              <h2 className="text-3xl md:text-4xl font-medium mb-6" data-testid="text-about-section">
+                A <em className="font-serif">little</em> about me.
+              </h2>
+              <p className="text-lg text-muted-foreground mb-6 leading-relaxed" data-testid="text-bio-1">
+                I've been in the world of creative development for almost a decade now. Most of my work today is through independent projects and collaborations with amazing teams. My personal mission is to help good folks that are doing good things for the good of others.
+              </p>
+              <p className="text-lg text-muted-foreground mb-8 leading-relaxed" data-testid="text-bio-2">
+                When I'm not designing or coding, you'll find me exploring new coffee shops, hiking trails, or spending time with family and friends.
+              </p>
+              <Button variant="outline" size="lg" className="group" asChild data-testid="button-work-together">
+                <a href="#contact">
+                  Let's work together
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-4">
+                <div className="bg-muted rounded-xl p-6 aspect-square flex items-center justify-center">
+                  <span className="text-6xl font-serif italic text-muted-foreground/50" data-testid="text-initial-s">S</span>
+                </div>
+                <div className="bg-card border border-border rounded-xl p-4">
+                  <p className="text-sm font-medium mb-1" data-testid="text-trait-creative">Creative</p>
+                  <p className="text-xs text-muted-foreground" data-testid="text-trait-creative-sub">Problem Solver</p>
+                </div>
+              </div>
+              <div className="space-y-4 pt-8">
+                <div className="bg-card border border-border rounded-xl p-4">
+                  <p className="text-sm font-medium mb-1" data-testid="text-trait-detail">Detail</p>
+                  <p className="text-xs text-muted-foreground" data-testid="text-trait-detail-sub">Oriented</p>
+                </div>
+                <div className="bg-muted rounded-xl p-6 aspect-square flex items-center justify-center">
+                  <span className="text-6xl font-serif italic text-muted-foreground/50" data-testid="text-initial-h">H</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="py-16 overflow-hidden bg-background text-foreground">
+        <div className="flex animate-marquee">
+          {[...Array(2)].map((_, setIndex) => (
+            <div key={setIndex} className="flex shrink-0 gap-8 px-4">
+              {["Creative Thinker", "Web Designer", "Brand Strategist", "Problem Solver", "Detail Oriented", "Collaborative"].map((trait) => (
+                <span key={`${setIndex}-${trait}`} className="text-4xl md:text-5xl font-medium text-muted-foreground/30 whitespace-nowrap">
+                  {trait} <span className="text-muted-foreground/20 mx-4" aria-hidden="true">•</span>
+                </span>
+              ))}
+            </div>
+          ))}
         </div>
       </section>
 
