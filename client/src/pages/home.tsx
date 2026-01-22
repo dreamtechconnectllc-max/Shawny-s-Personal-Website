@@ -181,6 +181,16 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-medium mb-4" data-testid="text-services-title">Services</h2>
+            <p className="text-muted-foreground max-w-2xl" data-testid="text-services-description">What I can help you with.</p>
+          </motion.div>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="grid md:grid-cols-3 gap-8"
           >
             {services.map((service, index) => (
