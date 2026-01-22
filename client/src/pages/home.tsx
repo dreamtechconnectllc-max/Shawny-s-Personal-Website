@@ -285,10 +285,10 @@ export default function Home() {
                 A <em className="font-serif">little</em> about me.
               </h2>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed" data-testid="text-bio-1">
-                I've been in the world of creative development for almost a decade now. Most of my work today is through independent projects and collaborations with amazing teams. My personal mission is to help good folks that are doing good things for the good of others.
+                Hey, Shawny here. I'm a web designer, brand strategist based in Atlanta, GA. I love helping good folks do good things with memorable brands & websites enjoying life all the while.
               </p>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed" data-testid="text-bio-2">
-                When I'm not designing or coding, you'll find me exploring new coffee shops, hiking trails, or spending time with family and friends.
+                If you need help bringing a dream, idea, or business to life with pro visuals like websites & branding, or want to take an existing project to the next level give me a shout.
               </p>
               <Button variant="outline" size="lg" className="group" asChild data-testid="button-work-together">
                 <a href="#contact">
