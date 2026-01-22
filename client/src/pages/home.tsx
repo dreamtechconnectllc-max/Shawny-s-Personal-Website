@@ -223,7 +223,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-medium mb-4" data-testid="text-projects-title">Featured projects</h2>
+            <h2 className="text-3xl md:text-4xl font-medium mb-4" data-testid="text-projects-title">Featured Projects</h2>
             <p className="text-muted-foreground max-w-2xl" data-testid="text-projects-description">A selection of recent work across branding, web design, and development.</p>
           </motion.div>
           <Carousel
