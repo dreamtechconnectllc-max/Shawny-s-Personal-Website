@@ -1,13 +1,9 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { ArrowRight, Mail, Linkedin, ExternalLink, Palette, Layout, Code, Sparkles, BarChart3, Target } from "lucide-react";
+import { ArrowRight, ExternalLink, Palette, Layout, Code, Sparkles, BarChart3, Target } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useToast } from "@/hooks/use-toast";
 import shawnyImage from "@assets/Untitled_design_(4)_1769115041947.png";
 import logoImage from "@assets/ChatGPT_Image_Jan_22,_2026,_04_04_22_PM_1769116122953.png";
 
@@ -57,26 +53,9 @@ const services = [
 ];
 
 export default function Home() {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
-
   const { scrollY } = useScroll();
   const shawnyX = useTransform(scrollY, [0, 500], [0, 80]);
   const hargroveX = useTransform(scrollY, [0, 500], [0, -80]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
-    setFormData({ name: "", email: "", subject: "", message: "" });
-  };
 
   return (
     <div className="min-h-screen bg-foreground text-background">
@@ -376,96 +355,28 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid lg:grid-cols-2 gap-12"
+            className="text-center mb-12"
           >
-            <div>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6" data-testid="text-contact-title">
-                Let's create something <em className="font-serif">beautiful</em> together.
-              </h2>
-              <p className="text-lg text-muted-foreground mb-8" data-testid="text-contact-description">
-                Have a project in mind? I'd love to hear about it. Send me a message and let's start the conversation.
-              </p>
-              <div className="space-y-4">
-                <a 
-                  href="mailto:hello@shawnyhargrove.com" 
-                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-                  data-testid="link-email"
-                  aria-label="Send email to hello@shawnyhargrove.com"
-                >
-                  <Mail className="h-5 w-5" aria-hidden="true" />
-                  hello@shawnyhargrove.com
-                </a>
-                <a 
-                  href="https://linkedin.com" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors"
-                  data-testid="link-linkedin"
-                  aria-label="Visit LinkedIn profile (opens in new tab)"
-                >
-                  <Linkedin className="h-5 w-5" aria-hidden="true" />
-                  LinkedIn
-                </a>
-              </div>
-            </div>
-            <Card className="border-border/50" data-testid="card-contact-form">
-              <CardContent className="p-6">
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="name" className="text-sm font-medium mb-2 block">Name</label>
-                      <Input 
-                        id="name" 
-                        placeholder="Your name" 
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        data-testid="input-name" 
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="text-sm font-medium mb-2 block">Email</label>
-                      <Input 
-                        id="email" 
-                        type="email" 
-                        placeholder="your@email.com" 
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        data-testid="input-email" 
-                        required
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="subject" className="text-sm font-medium mb-2 block">Subject</label>
-                    <Input 
-                      id="subject" 
-                      placeholder="Project inquiry" 
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      data-testid="input-subject" 
-                      required
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="text-sm font-medium mb-2 block">Message</label>
-                    <Textarea 
-                      id="message" 
-                      placeholder="Tell me about your project..." 
-                      rows={5}
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      data-testid="input-message"
-                      required
-                    />
-                  </div>
-                  <Button type="submit" className="w-full" size="lg" data-testid="button-submit-contact">
-                    Send Message
-                    <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+            <h2 className="text-3xl md:text-4xl font-medium mb-6" data-testid="text-contact-title">
+              Let's Connect
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-contact-description">
+              Ready to transform your team's learning experience? Book a 30-minute discovery call to discuss your L&D goals.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-full"
+          >
+            <div 
+              className="calendly-inline-widget" 
+              data-url="https://calendly.com/shawny-dreamtechconnect/30min"
+              data-testid="calendly-embed"
+              style={{ minWidth: '320px', height: '700px' }}
+            />
           </motion.div>
         </div>
       </section>
