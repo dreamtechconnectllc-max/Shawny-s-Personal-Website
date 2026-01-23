@@ -145,7 +145,7 @@ export default function Home() {
           >
             <div>
               <h2 className="text-3xl md:text-4xl font-medium mb-6" data-testid="text-about-section">
-                Hey, I'm <em className="font-serif">Shawny.</em>
+                Hey, I'm <em className="font-serif text-pink-500">Shawny.</em>
               </h2>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed" data-testid="text-bio-1">
                 I'm a Learning & Development strategist and instructional designer based in New York City.
