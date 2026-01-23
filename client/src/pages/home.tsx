@@ -90,6 +90,15 @@ export default function Home() {
             >
               Hargrove
             </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-lg md:text-xl lg:text-2xl font-medium text-pink-500 mt-4"
+              data-testid="text-hero-title"
+            >
+              Founder & CEO of DreamTech Connect
+            </motion.p>
           </div>
           
           <motion.div 
