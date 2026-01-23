@@ -280,7 +280,7 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-12 text-center"
           >
-            <Button variant="outline" size="lg" className="group border-background text-background hover:bg-background hover:text-foreground" asChild data-testid="button-work-together">
+            <Button size="lg" className="group bg-background text-foreground hover:bg-background/90" asChild data-testid="button-work-together">
               <a href="#contact">
                 Let's Connect!
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
