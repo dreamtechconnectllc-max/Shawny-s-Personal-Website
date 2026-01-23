@@ -97,7 +97,7 @@ export default function Home() {
               className="text-lg md:text-xl lg:text-2xl font-medium italic text-pink-500 mt-4"
               data-testid="text-hero-title"
             >
-              Founder & CEO of DreamTech Connect
+              Founder | Director of Curriculum Development | Instructional Designer
             </motion.p>
           </div>
           
