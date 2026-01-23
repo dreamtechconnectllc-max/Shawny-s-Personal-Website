@@ -335,7 +335,7 @@ export default function Home() {
                         ))}
                       </div>
                       <Button size="sm" variant="outline" className="w-full gap-2" data-testid={`button-view-project-${project.id}`} aria-label={`View ${project.title} project`}>
-                        View Project <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                        View Course <ExternalLink className="h-3 w-3" aria-hidden="true" />
                       </Button>
                     </CardContent>
                   </Card>
