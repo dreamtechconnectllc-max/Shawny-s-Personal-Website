@@ -156,6 +156,12 @@ export default function Home() {
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed" data-testid="text-bio-3">
                 If you're building training from scratch, leveling up your people, or need proof that L&D is moving the business forward, let's connect.
               </p>
+              <Button variant="outline" size="lg" className="group" asChild data-testid="button-work-together">
+                <a href="#contact">
+                  Let's Connect!
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </Button>
             </div>
             <div className="relative aspect-video bg-muted rounded-xl overflow-hidden" data-testid="video-about-container">
               <div className="absolute inset-0 flex items-center justify-center bg-foreground/5">
@@ -205,20 +211,6 @@ export default function Home() {
                 </Card>
               </motion.div>
             ))}
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-12 text-center"
-          >
-            <Button variant="outline" size="lg" className="group border-background text-background hover:bg-background hover:text-foreground" asChild data-testid="button-work-together">
-              <a href="#contact">
-                Let's Connect!
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
           </motion.div>
         </div>
       </section>
