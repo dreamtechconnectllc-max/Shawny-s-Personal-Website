@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { ArrowRight, ExternalLink, Palette, Layout, Code, Sparkles, BarChart3, Target } from "lucide-react";
+import { ArrowRight, ExternalLink, Palette, Layout, Code, Sparkles, BarChart3, Target, Play } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import shawnyImage from "@assets/Untitled_design_(4)_1769115041947.png";
 import logoImage from "@assets/New_DreamTech_Logos_1769121798107.png";
@@ -163,25 +163,13 @@ export default function Home() {
                 </a>
               </Button>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <div className="bg-muted rounded-xl p-6 aspect-square flex items-center justify-center">
-                  <span className="text-6xl font-serif italic text-muted-foreground/50" data-testid="text-initial-s">S</span>
-                </div>
-                <div className="bg-card border border-border rounded-xl p-4">
-                  <p className="text-sm font-medium mb-1" data-testid="text-trait-creative">Creative</p>
-                  <p className="text-xs text-muted-foreground" data-testid="text-trait-creative-sub">Problem Solver</p>
+            <div className="relative aspect-video bg-muted rounded-xl overflow-hidden" data-testid="video-about-container">
+              <div className="absolute inset-0 flex items-center justify-center bg-foreground/5">
+                <div className="w-20 h-20 rounded-full bg-pink-500 flex items-center justify-center cursor-pointer hover:bg-pink-600 transition-colors">
+                  <Play className="h-8 w-8 text-white ml-1" fill="white" />
                 </div>
               </div>
-              <div className="space-y-4 pt-8">
-                <div className="bg-card border border-border rounded-xl p-4">
-                  <p className="text-sm font-medium mb-1" data-testid="text-trait-detail">Detail</p>
-                  <p className="text-xs text-muted-foreground" data-testid="text-trait-detail-sub">Oriented</p>
-                </div>
-                <div className="bg-muted rounded-xl p-6 aspect-square flex items-center justify-center">
-                  <span className="text-6xl font-serif italic text-muted-foreground/50" data-testid="text-initial-h">H</span>
-                </div>
-              </div>
+              <p className="absolute bottom-4 left-4 text-sm text-muted-foreground">About Me Video Coming Soon</p>
             </div>
           </motion.div>
         </div>
