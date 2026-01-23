@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { ArrowRight, ExternalLink, Palette, Layout, Code, Sparkles, BarChart3, Target, Play } from "lucide-react";
+import { ArrowRight, ExternalLink, Palette, Layout, Code, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import shawnyImage from "@assets/Untitled_design_(4)_1769115041947.png";
 import logoImage from "@assets/New_DreamTech_Logos_1769121798107.png";
@@ -304,23 +304,23 @@ export default function Home() {
           >
             <Card className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid="card-ld-product-0">
               <CardContent className="p-6">
-                <Sparkles className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
-                <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-0">AI Course Builder</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-0">Quickly generate engaging course content with AI assistance. Create modules, quizzes, and assessments in minutes.</p>
+                <TrendingUp className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
+                <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-0">ConnectROI</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-0">Measure and demonstrate proof of ROI for learning solutions provided to stakeholders and decision makers. Show the real business impact of your L&D investments.</p>
               </CardContent>
             </Card>
             <Card className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid="card-ld-product-1">
               <CardContent className="p-6">
-                <BarChart3 className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
-                <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-1">Smart Analytics</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-1">Track learner progress with intelligent insights. Identify knowledge gaps and optimize training effectiveness.</p>
+                <FileSearch className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
+                <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-1">ConnectAnalysis</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-1">Conduct comprehensive training needs analysis with AI-powered insights. Get detailed reports on whether training is needed and recommended next steps.</p>
               </CardContent>
             </Card>
             <Card className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid="card-ld-product-2">
               <CardContent className="p-6">
-                <Target className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
-                <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-2">Personalized Paths</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-2">AI-driven learning paths that adapt to each team member's skill level and learning pace.</p>
+                <ClipboardCheck className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
+                <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-2">ConnectObservation</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-2">A reinforcement tool for managers to conduct certification observations, demonstrating how to perform specific duties or jobs to reinforce learning.</p>
               </CardContent>
             </Card>
           </motion.div>
