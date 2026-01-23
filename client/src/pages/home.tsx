@@ -1,9 +1,15 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import { ArrowRight, ExternalLink, Palette, Layout, Code, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
 import shawnyImage from "@assets/Untitled_design_(4)_1769115041947.png";
 import logoImage from "@assets/New_DreamTech_Logos_1769121798107.png";
 
@@ -52,10 +58,71 @@ const services = [
   }
 ];
 
+const aiProducts = [
+  {
+    id: "connect-roi",
+    title: "ConnectROI",
+    description: "Measure and demonstrate proof of ROI for learning solutions provided to stakeholders and decision makers. Show the real business impact of your L&D investments.",
+    icon: TrendingUp,
+  },
+  {
+    id: "connect-analysis",
+    title: "ConnectAnalysis",
+    description: "Conduct comprehensive training needs analysis with AI-powered insights. Get detailed reports on whether training is needed and recommended next steps.",
+    icon: FileSearch,
+  },
+  {
+    id: "connect-observation",
+    title: "ConnectObservation",
+    description: "A reinforcement tool for managers to conduct certification observations, demonstrating how to perform specific duties or jobs to reinforce learning.",
+    icon: ClipboardCheck,
+  },
+];
+
 export default function Home() {
   const { scrollY } = useScroll();
   const shawnyX = useTransform(scrollY, [0, 500], [0, 80]);
   const hargroveX = useTransform(scrollY, [0, 500], [0, -80]);
+  const { toast } = useToast();
+  
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState("");
+  const [email, setEmail] = useState("");
+
+  const waitlistMutation = useMutation({
+    mutationFn: async (data: { email: string; product: string }) => {
+      const response = await apiRequest("POST", "/api/waitlist", data);
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "You're on the list!",
+        description: `We'll notify you when ${selectedProduct} is ready.`,
+      });
+      setWaitlistOpen(false);
+      setEmail("");
+      setSelectedProduct("");
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Oops!",
+        description: error.message || "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleJoinWaitlist = (product: string) => {
+    setSelectedProduct(product);
+    setWaitlistOpen(true);
+  };
+
+  const handleSubmitWaitlist = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email && selectedProduct) {
+      waitlistMutation.mutate({ email, product: selectedProduct });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-foreground text-background">
@@ -302,27 +369,23 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="grid md:grid-cols-3 gap-8"
           >
-            <Card className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid="card-ld-product-0">
-              <CardContent className="p-6">
-                <TrendingUp className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
-                <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-0">ConnectROI</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-0">Measure and demonstrate proof of ROI for learning solutions provided to stakeholders and decision makers. Show the real business impact of your L&D investments.</p>
-              </CardContent>
-            </Card>
-            <Card className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid="card-ld-product-1">
-              <CardContent className="p-6">
-                <FileSearch className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
-                <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-1">ConnectAnalysis</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-1">Conduct comprehensive training needs analysis with AI-powered insights. Get detailed reports on whether training is needed and recommended next steps.</p>
-              </CardContent>
-            </Card>
-            <Card className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid="card-ld-product-2">
-              <CardContent className="p-6">
-                <ClipboardCheck className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
-                <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-2">ConnectObservation</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-2">A reinforcement tool for managers to conduct certification observations, demonstrating how to perform specific duties or jobs to reinforce learning.</p>
-              </CardContent>
-            </Card>
+            {aiProducts.map((product, index) => (
+              <Card key={product.id} className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300 flex flex-col" data-testid={`card-ld-product-${index}`}>
+                <CardContent className="p-6 flex flex-col flex-1">
+                  <product.icon className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
+                  <h3 className="text-xl font-semibold mb-3" data-testid={`text-ld-product-title-${index}`}>{product.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed flex-1" data-testid={`text-ld-product-desc-${index}`}>{product.description}</p>
+                  <Button 
+                    variant="outline" 
+                    className="mt-4 border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white"
+                    onClick={() => handleJoinWaitlist(product.title)}
+                    data-testid={`button-waitlist-${index}`}
+                  >
+                    Join Waitlist
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
           </motion.div>
         </div>
       </section>
@@ -371,6 +434,35 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      <Dialog open={waitlistOpen} onOpenChange={setWaitlistOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Join the {selectedProduct} Waitlist</DialogTitle>
+            <DialogDescription>
+              Be the first to know when {selectedProduct} launches. Enter your email below.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleSubmitWaitlist} className="flex flex-col gap-4">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              data-testid="input-waitlist-email"
+            />
+            <Button 
+              type="submit" 
+              className="bg-pink-500 hover:bg-pink-600 text-white"
+              disabled={waitlistMutation.isPending}
+              data-testid="button-submit-waitlist"
+            >
+              {waitlistMutation.isPending ? "Joining..." : "Join Waitlist"}
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -16,3 +16,19 @@ export const insertUserSchema = createInsertSchema(users).pick({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+export const waitlist = pgTable("waitlist", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  email: text("email").notNull(),
+  product: text("product").notNull(),
+});
+
+export const insertWaitlistSchema = createInsertSchema(waitlist).pick({
+  email: true,
+  product: true,
+}).extend({
+  email: z.string().email("Please enter a valid email address"),
+});
+
+export type InsertWaitlist = z.infer<typeof insertWaitlistSchema>;
+export type Waitlist = typeof waitlist.$inferSelect;
