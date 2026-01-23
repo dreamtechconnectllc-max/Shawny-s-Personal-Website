@@ -177,7 +177,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <Card className="h-full border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid={`card-service-${index}`}>
+                <Card className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid={`card-service-${index}`}>
                   <CardContent className="p-6">
                     <service.icon className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
                     <h3 className="text-xl font-semibold mb-3" data-testid={`text-service-title-${index}`}>{service.title}</h3>
@@ -323,21 +323,21 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="grid md:grid-cols-3 gap-8"
           >
-            <Card className="h-full border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid="card-ld-product-0">
+            <Card className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid="card-ld-product-0">
               <CardContent className="p-6">
                 <Sparkles className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
                 <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-0">AI Course Builder</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-0">Quickly generate engaging course content with AI assistance. Create modules, quizzes, and assessments in minutes.</p>
               </CardContent>
             </Card>
-            <Card className="h-full border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid="card-ld-product-1">
+            <Card className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid="card-ld-product-1">
               <CardContent className="p-6">
                 <BarChart3 className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
                 <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-1">Smart Analytics</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed" data-testid="text-ld-product-desc-1">Track learner progress with intelligent insights. Identify knowledge gaps and optimize training effectiveness.</p>
               </CardContent>
             </Card>
-            <Card className="h-full border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid="card-ld-product-2">
+            <Card className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid="card-ld-product-2">
               <CardContent className="p-6">
                 <Target className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
                 <h3 className="text-xl font-semibold mb-3" data-testid="text-ld-product-title-2">Personalized Paths</h3>
