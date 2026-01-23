@@ -134,31 +134,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="py-24 bg-background text-foreground">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl"
-          >
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-relaxed mb-8" data-testid="text-about-intro">
-              Hey, <span className="font-serif italic">Shawny</span> here. I'm an instructional designer based in New York City. I love helping organizations build learning experiences that actually <em className="font-serif">work</em>.
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8" data-testid="text-about-description">
-              If you need help designing impactful training programs, implementing an LMS, or scaling your L&D initiatives—let's connect.
-            </p>
-            <Button variant="outline" size="lg" className="group" asChild data-testid="button-start-project">
-              <a href="#contact">
-                Start a project
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-
       <section id="services" className="py-24 bg-foreground text-background">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
@@ -259,7 +234,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-foreground text-background">
+      <section id="about" className="py-24 bg-foreground text-background">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
