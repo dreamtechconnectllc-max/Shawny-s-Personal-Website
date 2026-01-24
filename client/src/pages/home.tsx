@@ -403,7 +403,7 @@ export default function Home() {
               Let's Connect
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-contact-description">
-              Ready to transform your team's learning experience? Book a 30-minute discovery call to discuss your L&D goals.
+              Ready to transform your team's learning experience? Book a 15-minute discovery call to discuss your L&D goals.
             </p>
           </motion.div>
           <motion.div
@@ -415,7 +415,7 @@ export default function Home() {
           >
             <div 
               className="calendly-inline-widget" 
-              data-url="https://calendly.com/shawny-dreamtechconnect/30min"
+              data-url="https://calendly.com/shawny-dreamtechconnect/15-minute-fit-check-clone"
               data-testid="calendly-embed"
               style={{ minWidth: '320px', height: '700px' }}
             />
