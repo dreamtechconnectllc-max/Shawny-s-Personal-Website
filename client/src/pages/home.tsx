@@ -190,20 +190,21 @@ export default function Home() {
             </motion.div>
           </div>
           
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="absolute -right-32 md:-right-48 lg:-right-64 xl:-right-80 bottom-0 z-20 h-[70vh] md:h-[80vh] lg:h-[85vh]"
-          >
-            <img 
-              src={shawnyImage}
-              alt="Shawny Hargrove"
-              className="h-full w-auto object-contain object-bottom"
-              data-testid="img-profile"
-            />
-          </motion.div>
-        </div>
+          </div>
+        
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="absolute right-0 md:right-8 lg:right-16 xl:right-24 bottom-0 z-20 h-[70vh] md:h-[80vh] lg:h-[85vh]"
+        >
+          <img 
+            src={shawnyImage}
+            alt="Shawny Hargrove"
+            className="h-full w-auto object-contain object-bottom"
+            data-testid="img-profile"
+          />
+        </motion.div>
       </section>
 
       <section id="about" className="py-24 bg-background text-foreground">
