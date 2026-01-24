@@ -161,7 +161,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-lg md:text-xl lg:text-2xl font-medium italic text-pink-500 mt-4"
+              className="text-lg md:text-xl lg:text-2xl font-medium italic text-pink-500 mt-4 mb-8"
               data-testid="text-hero-title"
             >
               Founder & CEO | Director | Instructional Designer
@@ -186,7 +186,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="absolute bottom-12 left-6 z-30 max-w-md"
+            className="absolute bottom-24 left-6 z-30 max-w-md"
           >
             <p className="text-lg md:text-xl lg:text-2xl text-background mb-6" data-testid="text-hero-title">
               Scaling teams with strategic learning solutions that meet measurable goals businesses care about.
