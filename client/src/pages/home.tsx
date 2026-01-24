@@ -166,6 +166,15 @@ export default function Home() {
             >
               Founder & CEO | Director | Instructional Designer
             </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-lg md:text-xl lg:text-2xl text-background mt-4 max-w-md"
+              data-testid="text-hero-subtitle"
+            >
+              Scaling teams with strategic learning solutions that meet measurable goals businesses care about.
+            </motion.p>
           </div>
           
           <motion.div 
@@ -185,12 +194,9 @@ export default function Home() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="absolute bottom-12 left-6 z-30 max-w-md"
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="absolute bottom-12 left-6 z-30"
           >
-            <p className="text-lg md:text-xl lg:text-2xl text-background mb-6" data-testid="text-hero-title">
-              Scaling teams with strategic learning solutions that meet measurable goals businesses care about.
-            </p>
             <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild data-testid="button-cta-hero">
               <a href="#contact">
                 Let's Connect!
