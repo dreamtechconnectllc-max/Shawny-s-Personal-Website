@@ -140,7 +140,7 @@ export default function Home() {
         </nav>
       </header>
 
-      <section id="top" className="relative h-screen bg-foreground overflow-hidden">
+      <section id="top" className="relative min-h-screen pb-16 bg-foreground overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 pt-32 h-full relative">
           <div className="relative z-10">
             <motion.h1 
