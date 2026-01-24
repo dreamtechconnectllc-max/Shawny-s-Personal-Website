@@ -420,7 +420,7 @@ export default function Home() {
           >
             <div 
               className="calendly-inline-widget" 
-              data-url="https://calendly.com/shawny-dreamtechconnect/15-minute-fit-check-clone"
+              data-url="https://calendly.com/shawny-dreamtechconnect/15-minute-fit-check-clone-clone-clone"
               data-testid="calendly-embed"
               style={{ minWidth: '320px', height: '700px' }}
             />
