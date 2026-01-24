@@ -170,11 +170,24 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-lg md:text-xl lg:text-2xl text-background mt-6 mb-8 max-w-md"
+              className="text-lg md:text-xl lg:text-2xl text-background mt-6 max-w-md"
               data-testid="text-hero-subtitle"
             >
               Scaling teams with strategic learning solutions that meet measurable goals businesses care about.
             </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="mt-8"
+            >
+              <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild data-testid="button-cta-hero">
+                <a href="#contact">
+                  Let's Connect!
+                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </a>
+              </Button>
+            </motion.div>
           </div>
           
           <motion.div 
@@ -189,20 +202,6 @@ export default function Home() {
               className="h-full w-auto object-contain object-bottom"
               data-testid="img-profile"
             />
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="absolute bottom-12 left-6 z-30"
-          >
-            <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild data-testid="button-cta-hero">
-              <a href="#contact">
-                Let's Connect!
-                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-              </a>
-            </Button>
           </motion.div>
         </div>
       </section>
