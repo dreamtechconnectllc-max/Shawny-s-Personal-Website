@@ -170,7 +170,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-lg md:text-xl lg:text-2xl text-background mt-6 max-w-md"
+              className="text-lg md:text-xl lg:text-2xl text-background mt-6 mb-8 max-w-md"
               data-testid="text-hero-subtitle"
             >
               Scaling teams with strategic learning solutions that meet measurable goals businesses care about.
