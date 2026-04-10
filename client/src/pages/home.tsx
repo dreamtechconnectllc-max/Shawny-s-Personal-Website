@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, ExternalLink, Palette, Layout, Code, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck } from "lucide-react";
+import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -40,23 +40,6 @@ const projects = [
   }
 ];
 
-const services = [
-  {
-    icon: Layout,
-    title: "LMS Implementation",
-    description: "Expert implementation and configuration of learning management systems tailored to your organization's needs. Seamless integration with existing workflows and tools."
-  },
-  {
-    icon: Code,
-    title: "Course & Program Creation",
-    description: "Design and develop engaging instructor-led training (ILT) and virtual instructor-led training (VILT) programs that drive measurable learning outcomes."
-  },
-  {
-    icon: Palette,
-    title: "L&D Team Development",
-    description: "Build and scale your learning and development team with strategic guidance, best practices, and hands-on coaching to maximize team effectiveness."
-  }
-];
 
 const aiProducts = [
   {
@@ -242,59 +225,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" className="py-24 bg-foreground text-background">
-        <div className="max-w-7xl mx-auto px-6">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-medium mb-4 text-background" data-testid="text-services-title">Services</h2>
-            <p className="text-background/70 max-w-2xl" data-testid="text-services-description">What I can help you with.</p>
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <Card className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300" data-testid={`card-service-${index}`}>
-                  <CardContent className="p-6">
-                    <service.icon className="h-8 w-8 mb-4 text-foreground" aria-hidden="true" />
-                    <h3 className="text-xl font-semibold mb-3" data-testid={`text-service-title-${index}`}>{service.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed" data-testid={`text-service-desc-${index}`}>{service.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-12 text-center"
-          >
-            <Button size="lg" className="group bg-background text-foreground hover:bg-background/90" asChild data-testid="button-work-together">
-              <a href="#contact">
-                Let's Connect!
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-            </Button>
-          </motion.div>
-        </div>
-      </section>
 
       <section id="projects" className="py-24 bg-background text-foreground">
         <div className="max-w-7xl mx-auto px-6">
