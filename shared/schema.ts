@@ -21,13 +21,16 @@ export const waitlist = pgTable("waitlist", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   email: text("email").notNull(),
   product: text("product").notNull(),
+  wantsDiscount: text("wants_discount").notNull().default("no"),
 });
 
 export const insertWaitlistSchema = createInsertSchema(waitlist).pick({
   email: true,
   product: true,
+  wantsDiscount: true,
 }).extend({
   email: z.string().email("Please enter a valid email address"),
+  wantsDiscount: z.string().optional().default("no"),
 });
 
 export type InsertWaitlist = z.infer<typeof insertWaitlistSchema>;

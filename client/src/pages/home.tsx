@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck } from "lucide-react";
+import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck, GraduationCap, Star } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -67,10 +68,15 @@ export default function Home() {
   const shawnyX = useTransform(scrollY, [0, 500], [0, 80]);
   const hargroveX = useTransform(scrollY, [0, 500], [0, -80]);
   const { toast } = useToast();
-  
+  const [, setLocation] = useLocation();
+
   const [waitlistOpen, setWaitlistOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState("");
   const [email, setEmail] = useState("");
+
+  const [coursesModalOpen, setCoursesModalOpen] = useState(false);
+  const [coursesEmail, setCoursesEmail] = useState("");
+  const [wantsDiscount, setWantsDiscount] = useState(false);
 
   const waitlistMutation = useMutation({
     mutationFn: async (data: { email: string; product: string }) => {
@@ -95,6 +101,32 @@ export default function Home() {
     },
   });
 
+  const coursesWaitlistMutation = useMutation({
+    mutationFn: async (data: { email: string; product: string; wantsDiscount: string }) => {
+      const response = await apiRequest("POST", "/api/waitlist", data);
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "You're on the list!",
+        description: wantsDiscount
+          ? "We'll reach out with your exclusive early-bird discount when courses launch!"
+          : "We'll let you know as soon as our courses go live.",
+      });
+      setCoursesModalOpen(false);
+      setCoursesEmail("");
+      setWantsDiscount(false);
+      setLocation("/courses");
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Oops!",
+        description: error.message || "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   const handleJoinWaitlist = (product: string) => {
     setSelectedProduct(product);
     setWaitlistOpen(true);
@@ -105,6 +137,27 @@ export default function Home() {
     if (email && selectedProduct) {
       waitlistMutation.mutate({ email, product: selectedProduct });
     }
+  };
+
+  const handleCoursesNavClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCoursesModalOpen(true);
+  };
+
+  const handleCoursesWaitlistSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (coursesEmail) {
+      coursesWaitlistMutation.mutate({
+        email: coursesEmail,
+        product: "courses",
+        wantsDiscount: wantsDiscount ? "yes" : "no",
+      });
+    }
+  };
+
+  const handleSkipToCoursesPage = () => {
+    setCoursesModalOpen(false);
+    setLocation("/courses");
   };
 
   return (
@@ -119,6 +172,10 @@ export default function Home() {
             <a href="https://dreamtechconnect.io" target="_blank" rel="noopener noreferrer" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-services">Services</a>
             <a href="#projects" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-projects">Projects</a>
             <a href="#ld-ai-products" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-ld-ai-products">L&D AI Products</a>
+            <a href="/courses" onClick={handleCoursesNavClick} className="text-sm text-pink-500 hover:text-pink-400 font-medium transition-colors flex items-center gap-1" data-testid="link-courses">
+              <GraduationCap className="h-4 w-4" />
+              Courses
+            </a>
           </div>
         </nav>
       </header>
@@ -397,6 +454,93 @@ export default function Home() {
               {waitlistMutation.isPending ? "Joining..." : "Join Waitlist"}
             </Button>
           </form>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={coursesModalOpen} onOpenChange={setCoursesModalOpen}>
+        <DialogContent className="sm:max-w-lg p-0 overflow-hidden">
+          <div className="bg-foreground p-8 text-background">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="h-10 w-10 rounded-full bg-pink-500/20 flex items-center justify-center">
+                <GraduationCap className="h-5 w-5 text-pink-400" />
+              </div>
+              <Badge className="bg-pink-500/20 text-pink-400 border border-pink-500/30 text-xs">
+                Coming Soon
+              </Badge>
+            </div>
+            <DialogTitle className="text-2xl font-bold text-background mt-4 mb-2">
+              Courses are on the way!
+            </DialogTitle>
+            <DialogDescription className="text-background/70 text-sm leading-relaxed">
+              We're building practical L&D courses you can actually use. Join the waitlist to be first in line — and optionally reserve your early-bird discount.
+            </DialogDescription>
+          </div>
+
+          <div className="p-8 bg-background">
+            <form onSubmit={handleCoursesWaitlistSubmit} className="flex flex-col gap-5">
+              <div>
+                <label className="text-sm font-medium text-foreground mb-2 block" htmlFor="courses-email">
+                  Your email address
+                </label>
+                <Input
+                  id="courses-email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={coursesEmail}
+                  onChange={(e) => setCoursesEmail(e.target.value)}
+                  required
+                  data-testid="input-courses-email"
+                />
+              </div>
+
+              <label className="flex items-start gap-3 cursor-pointer group" data-testid="label-wants-discount">
+                <div className="relative mt-0.5">
+                  <input
+                    type="checkbox"
+                    checked={wantsDiscount}
+                    onChange={(e) => setWantsDiscount(e.target.checked)}
+                    className="peer sr-only"
+                    data-testid="checkbox-wants-discount"
+                  />
+                  <div className="h-5 w-5 rounded border-2 border-border peer-checked:bg-pink-500 peer-checked:border-pink-500 transition-colors flex items-center justify-center">
+                    {wantsDiscount && (
+                      <svg className="h-3 w-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-foreground flex items-center gap-1">
+                    <Star className="h-3.5 w-3.5 text-pink-500" />
+                    Yes! Reserve my early-bird discount
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    Get an exclusive discount when courses launch. No payment needed now.
+                  </p>
+                </div>
+              </label>
+
+              <div className="flex flex-col gap-3 pt-1">
+                <Button
+                  type="submit"
+                  className="bg-pink-500 hover:bg-pink-600 text-white w-full"
+                  disabled={coursesWaitlistMutation.isPending || !coursesEmail}
+                  data-testid="button-submit-courses-waitlist"
+                >
+                  {coursesWaitlistMutation.isPending ? "Joining..." : "Join the Waitlist"}
+                </Button>
+                <button
+                  type="button"
+                  onClick={handleSkipToCoursesPage}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors text-center"
+                  data-testid="button-skip-courses"
+                >
+                  Skip — just show me the courses
+                </button>
+              </div>
+            </form>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
