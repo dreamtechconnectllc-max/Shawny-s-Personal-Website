@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Calendar, MapPin, Video, Users, ArrowRight, Bell, Clock } from "lucide-react";
+import { Calendar, MapPin, Video, Users, ArrowRight, Bell, Clock, Mic } from "lucide-react";
 import { Link } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -15,54 +15,54 @@ import logoImage from "@assets/New_DreamTech_Logos_1769121798107.png";
 const upcomingEvents = [
   {
     id: 1,
-    title: "L&D Strategy Masterclass: Building Programs That Stick",
+    title: "ATD International Conference & Expo 2026",
     description:
-      "A hands-on virtual workshop diving deep into how to design learning programs that drive real behavior change. We'll cover curriculum design, stakeholder alignment, and measurement.",
-    date: "June 12, 2026",
-    time: "1:00 PM – 3:00 PM EST",
-    type: "Virtual",
-    location: "Zoom (link sent upon registration)",
-    seats: "Limited to 50 attendees",
-    category: "Workshop",
+      "Catch me at ATD ICE — the world's largest L&D conference. I'll be attending sessions, connecting with fellow practitioners, and sharing insights from the floor. Come say hi if you're there!",
+    date: "June 5, 2026",
+    time: "All Day",
+    type: "In-Person",
+    location: "Washington, D.C.",
+    seats: "Open to attendees",
+    category: "Conference",
     featured: true,
   },
   {
     id: 2,
-    title: "DreamTech Connect: NYC L&D Networking Mixer",
+    title: "Panel: The Future of AI in Corporate Learning",
     description:
-      "Connect with fellow L&D professionals, instructional designers, and HR leaders over drinks in New York City. Light refreshments provided. Come ready to share, learn, and grow your network.",
-    date: "July 19, 2026",
-    time: "6:00 PM – 9:00 PM EST",
-    type: "In-Person",
-    location: "New York City, NY (Venue TBA)",
-    seats: "75 spots available",
-    category: "Networking",
+      "I'll be joining a panel of L&D leaders to talk about where AI is actually making a difference in workplace learning — and where the hype doesn't match the reality. Come with your questions.",
+    date: "July 22, 2026",
+    time: "2:00 PM – 3:30 PM EST",
+    type: "Virtual",
+    location: "Online — registration link coming soon",
+    seats: "Open to all",
+    category: "Panel",
     featured: false,
   },
   {
     id: 3,
-    title: "Proving ROI to Executives: A Practical Playbook",
+    title: "Guest Speaker: NYC L&D Leaders Meetup",
     description:
-      "Learn how to translate learning data into executive-ready narratives. This free webinar covers the Kirkpatrick model, reporting frameworks, and how to communicate impact confidently.",
-    date: "August 5, 2026",
-    time: "12:00 PM – 1:00 PM EST",
-    type: "Virtual",
-    location: "Zoom (link sent upon registration)",
-    seats: "Open enrollment",
-    category: "Webinar",
+      "I'm speaking at this month's NYC L&D Leaders Meetup on building L&D teams from the ground up — what I've learned, what I'd do differently, and what actually moves the needle.",
+    date: "August 14, 2026",
+    time: "6:30 PM – 8:30 PM EST",
+    type: "In-Person",
+    location: "New York City, NY (Venue TBA)",
+    seats: "RSVP required",
+    category: "Speaking",
     featured: false,
   },
   {
     id: 4,
-    title: "AI Tools for L&D Professionals — Live Demo Day",
+    title: "Podcast Recording: The Learning Leaders Show",
     description:
-      "See the ConnectROI, ConnectAnalysis, and ConnectObservation tools in action. Ask questions live, explore use cases, and get a sneak peek at what's coming next from DreamTech Connect.",
-    date: "September 18, 2026",
-    time: "2:00 PM – 3:30 PM EST",
+      "I'll be a guest on The Learning Leaders Show talking about instructional design, proving L&D ROI, and building a personal brand as an L&D professional. Episode drops shortly after — stay tuned.",
+    date: "September 9, 2026",
+    time: "11:00 AM – 12:00 PM EST",
     type: "Virtual",
-    location: "Zoom (link sent upon registration)",
-    seats: "Open enrollment",
-    category: "Demo",
+    location: "Recorded via Zoom",
+    seats: "Recording — public episode after",
+    category: "Podcast",
     featured: false,
   },
 ];
@@ -70,42 +70,39 @@ const upcomingEvents = [
 const pastEvents = [
   {
     id: 101,
-    title: "Instructional Design 101: Where to Start",
-    date: "March 2026",
-    type: "Virtual",
-    category: "Webinar",
-    attendees: "120+",
+    title: "DevLearn Conference & Expo",
+    date: "October 2025",
+    type: "In-Person",
+    category: "Conference",
   },
   {
     id: 102,
-    title: "LMS Selection: Cutting Through the Noise",
-    date: "January 2026",
+    title: "Panel: Women Leading in L&D",
+    date: "March 2026",
     type: "Virtual",
-    category: "Workshop",
-    attendees: "85+",
+    category: "Panel",
   },
   {
     id: 103,
-    title: "DreamTech Connect Launch Event — NYC",
-    date: "November 2025",
+    title: "Guest Lecturer — Columbia University",
+    date: "January 2026",
     type: "In-Person",
-    category: "Networking",
-    attendees: "60+",
+    category: "Speaking",
   },
 ];
 
 const categoryColors: Record<string, string> = {
-  Workshop: "bg-purple-500/20 text-purple-400 border-purple-500/30",
-  Networking: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-  Webinar: "bg-green-500/20 text-green-400 border-green-500/30",
-  Demo: "bg-orange-500/20 text-orange-400 border-orange-500/30",
+  Conference: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+  Panel: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+  Speaking: "bg-pink-500/20 text-pink-400 border-pink-500/30",
+  Podcast: "bg-orange-500/20 text-orange-400 border-orange-500/30",
 };
 
 const categoryColorsLight: Record<string, string> = {
-  Workshop: "bg-purple-500/10 text-purple-600 border-purple-500/20",
-  Networking: "bg-blue-500/10 text-blue-600 border-blue-500/20",
-  Webinar: "bg-green-500/10 text-green-600 border-green-500/20",
-  Demo: "bg-orange-500/10 text-orange-600 border-orange-500/20",
+  Conference: "bg-purple-500/10 text-purple-600 border-purple-500/20",
+  Panel: "bg-blue-500/10 text-blue-600 border-blue-500/20",
+  Speaking: "bg-pink-500/10 text-pink-600 border-pink-500/20",
+  Podcast: "bg-orange-500/10 text-orange-600 border-orange-500/20",
 };
 
 export default function Events() {
@@ -190,27 +187,27 @@ export default function Events() {
             transition={{ duration: 0.6 }}
           >
             <Badge className="mb-6 bg-pink-500/20 text-pink-400 border border-pink-500/30 px-4 py-1 text-sm" data-testid="badge-events">
-              Events & Community
+              Appearances & Speaking
             </Badge>
             <h1 className="text-5xl md:text-7xl font-bold text-background leading-tight mb-6" data-testid="text-events-heading">
-              Learn Together,{" "}
-              <span className="text-pink-500">Grow Together</span>
+              Where You Can{" "}
+              <span className="text-pink-500">Find Me</span>
             </h1>
             <p className="text-lg md:text-xl text-background/70 max-w-2xl leading-relaxed mb-10" data-testid="text-events-subheading">
-              Workshops, webinars, and networking events for L&D professionals ready to level up. All hosted by Shawny Hargrove and the DreamTech Connect team.
+              Conferences, panels, speaking engagements, and podcast appearances. If you'll be at any of these — come find me. I love connecting with fellow L&D professionals in person.
             </p>
             <div className="flex flex-wrap gap-6">
               <div className="flex items-center gap-2 text-background/60 text-sm">
                 <Calendar className="h-4 w-4 text-pink-500" />
-                <span data-testid="text-stat-upcoming">{upcomingEvents.length} Upcoming Events</span>
+                <span data-testid="text-stat-upcoming">{upcomingEvents.length} Upcoming Appearances</span>
               </div>
               <div className="flex items-center gap-2 text-background/60 text-sm">
-                <Video className="h-4 w-4 text-pink-500" />
-                <span>Virtual & In-Person</span>
+                <Mic className="h-4 w-4 text-pink-500" />
+                <span>Speaking & Panels</span>
               </div>
               <div className="flex items-center gap-2 text-background/60 text-sm">
-                <Users className="h-4 w-4 text-pink-500" />
-                <span>Built for L&D Professionals</span>
+                <MapPin className="h-4 w-4 text-pink-500" />
+                <span>NYC & Nationwide</span>
               </div>
             </div>
           </motion.div>
@@ -227,9 +224,9 @@ export default function Events() {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-medium mb-4" data-testid="text-upcoming-title">Upcoming Events</h2>
+            <h2 className="text-3xl md:text-4xl font-medium mb-4" data-testid="text-upcoming-title">Upcoming Appearances</h2>
             <p className="text-muted-foreground max-w-2xl" data-testid="text-upcoming-desc">
-              Register your spot — many events have limited availability.
+              Here's where I'll be. If you're attending any of these, reach out — I'd love to connect.
             </p>
           </motion.div>
 
@@ -382,8 +379,8 @@ export default function Events() {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-medium mb-4 text-background" data-testid="text-past-title">Past Events</h2>
-            <p className="text-background/60 max-w-2xl">A look back at what we've hosted.</p>
+            <h2 className="text-3xl md:text-4xl font-medium mb-4 text-background" data-testid="text-past-title">Past Appearances</h2>
+            <p className="text-background/60 max-w-2xl">A few places I've spoken, taught, and shown up.</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-20">
@@ -410,9 +407,6 @@ export default function Events() {
                         {event.type === "Virtual" ? <Video className="h-3 w-3" /> : <MapPin className="h-3 w-3" />}
                         {event.type}
                       </span>
-                      <span className="flex items-center gap-1">
-                        <Users className="h-3 w-3" />{event.attendees} attended
-                      </span>
                     </div>
                   </CardContent>
                 </Card>
@@ -430,10 +424,10 @@ export default function Events() {
           >
             <Bell className="h-10 w-10 text-pink-400 mx-auto mb-4" />
             <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-background" data-testid="text-notify-heading">
-              Never miss an event
+              Want to know where I'll be next?
             </h2>
             <p className="text-background/70 mb-8 max-w-lg mx-auto">
-              Sign up and we'll send you event announcements, early access, and registration reminders straight to your inbox.
+              Drop your email and I'll keep you in the loop on new appearances, speaking dates, and events I'll be attending.
             </p>
             <Button
               size="lg"
@@ -441,7 +435,7 @@ export default function Events() {
               onClick={() => { setSelectedEvent("All Events"); setNotifyOpen(true); }}
               data-testid="button-notify-footer"
             >
-              Notify Me of New Events
+              Keep Me Updated
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
@@ -457,12 +451,12 @@ export default function Events() {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Bell className="h-5 w-5 text-pink-500" />
-              {selectedEvent === "All Events" ? "Get Event Notifications" : "Register for Event"}
+              {selectedEvent === "All Events" ? "Stay in the Loop" : "I'll See You There!"}
             </DialogTitle>
             <DialogDescription>
               {selectedEvent === "All Events"
-                ? "Enter your email and we'll keep you updated on all upcoming events."
-                : `Enter your email to register for "${selectedEvent}". We'll send you details and a reminder before the event.`}
+                ? "Drop your email and I'll notify you when I add new appearances and speaking dates."
+                : `Drop your email and I'll send you details about "${selectedEvent}" — including any updates or reminders as it gets closer.`}
             </DialogDescription>
           </DialogHeader>
           <form onSubmit={handleSubmitNotify} className="flex flex-col gap-4">
