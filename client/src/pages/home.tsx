@@ -133,7 +133,7 @@ export default function Home() {
           </a>
           <div className="hidden md:flex items-center gap-8">
             <a href="#about" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-about">About</a>
-            <a href="#services" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-services">Services</a>
+            <a href="https://dreamtechconnect.io" target="_blank" rel="noopener noreferrer" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-services">Services</a>
             <a href="#projects" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-projects">Projects</a>
             <a href="#ld-ai-products" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-ld-ai-products">L&D AI Products</a>
           </div>
