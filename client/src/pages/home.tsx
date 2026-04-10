@@ -5,9 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck, GraduationCap, Star, CalendarDays, ChevronDown, ShoppingBag } from "lucide-react";
+import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck, GraduationCap, Star, CalendarDays, ChevronDown, ShoppingBag, BookOpen } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -188,6 +188,13 @@ export default function Home() {
                   <GraduationCap className="h-4 w-4 text-pink-500" />
                   Courses
                 </DropdownMenuItem>
+                <DropdownMenuItem asChild data-testid="dropdown-item-books">
+                  <a href="/books" className="flex items-center gap-2 cursor-pointer">
+                    <BookOpen className="h-4 w-4 text-pink-500" />
+                    Books
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem asChild data-testid="dropdown-item-services">
                   <a href="https://dreamtechconnect.io" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 cursor-pointer">
                     <ExternalLink className="h-4 w-4 text-pink-500" />
