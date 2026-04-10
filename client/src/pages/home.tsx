@@ -5,8 +5,9 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck, GraduationCap, Star, CalendarDays } from "lucide-react";
+import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck, GraduationCap, Star, CalendarDays, ChevronDown, ShoppingBag } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -169,17 +170,32 @@ export default function Home() {
           </a>
           <div className="hidden md:flex items-center gap-8">
             <a href="#about" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-about">About</a>
-            <a href="https://dreamtechconnect.io" target="_blank" rel="noopener noreferrer" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-services">Services</a>
             <a href="#projects" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-projects">Projects</a>
             <a href="#ld-ai-products" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-ld-ai-products">L&D AI Products</a>
-            <a href="/courses" onClick={handleCoursesNavClick} className="text-sm text-pink-500 hover:text-pink-400 font-medium transition-colors flex items-center gap-1" data-testid="link-courses">
-              <GraduationCap className="h-4 w-4" />
-              Courses
-            </a>
-            <a href="/events" className="text-sm text-pink-500 hover:text-pink-400 font-medium transition-colors flex items-center gap-1" data-testid="link-events">
-              <CalendarDays className="h-4 w-4" />
-              Events
-            </a>
+            <a href="/events" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-events">Events</a>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm text-pink-500 hover:text-pink-400 font-medium transition-colors outline-none" data-testid="dropdown-store">
+                <ShoppingBag className="h-4 w-4" />
+                Store
+                <ChevronDown className="h-3.5 w-3.5 mt-0.5" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="min-w-[160px]">
+                <DropdownMenuItem
+                  className="cursor-pointer gap-2"
+                  onSelect={() => setCoursesModalOpen(true)}
+                  data-testid="dropdown-item-courses"
+                >
+                  <GraduationCap className="h-4 w-4 text-pink-500" />
+                  Courses
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild data-testid="dropdown-item-services">
+                  <a href="https://dreamtechconnect.io" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 cursor-pointer">
+                    <ExternalLink className="h-4 w-4 text-pink-500" />
+                    Services
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </nav>
       </header>
