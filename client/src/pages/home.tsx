@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck, GraduationCap, Star } from "lucide-react";
+import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck, GraduationCap, Star, CalendarDays } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -175,6 +175,10 @@ export default function Home() {
             <a href="/courses" onClick={handleCoursesNavClick} className="text-sm text-pink-500 hover:text-pink-400 font-medium transition-colors flex items-center gap-1" data-testid="link-courses">
               <GraduationCap className="h-4 w-4" />
               Courses
+            </a>
+            <a href="/events" className="text-sm text-pink-500 hover:text-pink-400 font-medium transition-colors flex items-center gap-1" data-testid="link-events">
+              <CalendarDays className="h-4 w-4" />
+              Events
             </a>
           </div>
         </nav>

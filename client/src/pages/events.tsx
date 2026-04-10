@@ -1,0 +1,438 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Calendar, MapPin, Video, Users, ArrowRight, Bell, Clock, ExternalLink } from "lucide-react";
+import { Link } from "wouter";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
+import { useToast } from "@/hooks/use-toast";
+import logoImage from "@assets/New_DreamTech_Logos_1769121798107.png";
+
+const upcomingEvents = [
+  {
+    id: 1,
+    title: "L&D Strategy Masterclass: Building Programs That Stick",
+    description:
+      "A hands-on virtual workshop diving deep into how to design learning programs that drive real behavior change. We'll cover curriculum design, stakeholder alignment, and measurement.",
+    date: "June 12, 2026",
+    time: "1:00 PM – 3:00 PM EST",
+    type: "Virtual",
+    location: "Zoom (link sent upon registration)",
+    seats: "Limited to 50 attendees",
+    category: "Workshop",
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "DreamTech Connect: NYC L&D Networking Mixer",
+    description:
+      "Connect with fellow L&D professionals, instructional designers, and HR leaders over drinks in New York City. Light refreshments provided. Come ready to share, learn, and grow your network.",
+    date: "July 19, 2026",
+    time: "6:00 PM – 9:00 PM EST",
+    type: "In-Person",
+    location: "New York City, NY (Venue TBA)",
+    seats: "75 spots available",
+    category: "Networking",
+    featured: false,
+  },
+  {
+    id: 3,
+    title: "Proving ROI to Executives: A Practical Playbook",
+    description:
+      "Learn how to translate learning data into executive-ready narratives. This free webinar covers the Kirkpatrick model, reporting frameworks, and how to communicate impact confidently.",
+    date: "August 5, 2026",
+    time: "12:00 PM – 1:00 PM EST",
+    type: "Virtual",
+    location: "Zoom (link sent upon registration)",
+    seats: "Open enrollment",
+    category: "Webinar",
+    featured: false,
+  },
+  {
+    id: 4,
+    title: "AI Tools for L&D Professionals — Live Demo Day",
+    description:
+      "See the ConnectROI, ConnectAnalysis, and ConnectObservation tools in action. Ask questions live, explore use cases, and get a sneak peek at what's coming next from DreamTech Connect.",
+    date: "September 18, 2026",
+    time: "2:00 PM – 3:30 PM EST",
+    type: "Virtual",
+    location: "Zoom (link sent upon registration)",
+    seats: "Open enrollment",
+    category: "Demo",
+    featured: false,
+  },
+];
+
+const pastEvents = [
+  {
+    id: 101,
+    title: "Instructional Design 101: Where to Start",
+    date: "March 2026",
+    type: "Virtual",
+    category: "Webinar",
+    attendees: "120+",
+  },
+  {
+    id: 102,
+    title: "LMS Selection: Cutting Through the Noise",
+    date: "January 2026",
+    type: "Virtual",
+    category: "Workshop",
+    attendees: "85+",
+  },
+  {
+    id: 103,
+    title: "DreamTech Connect Launch Event — NYC",
+    date: "November 2025",
+    type: "In-Person",
+    category: "Networking",
+    attendees: "60+",
+  },
+];
+
+const categoryColors: Record<string, string> = {
+  Workshop: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+  Networking: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+  Webinar: "bg-green-500/20 text-green-400 border-green-500/30",
+  Demo: "bg-orange-500/20 text-orange-400 border-orange-500/30",
+};
+
+export default function Events() {
+  const { toast } = useToast();
+  const [notifyOpen, setNotifyOpen] = useState(false);
+  const [notifyEmail, setNotifyEmail] = useState("");
+  const [selectedEvent, setSelectedEvent] = useState<string>("");
+
+  const notifyMutation = useMutation({
+    mutationFn: async (data: { email: string; product: string }) => {
+      const response = await apiRequest("POST", "/api/waitlist", data);
+      return response.json();
+    },
+    onSuccess: () => {
+      toast({
+        title: "You're registered!",
+        description: `We'll send event details and reminders to your inbox.`,
+      });
+      setNotifyOpen(false);
+      setNotifyEmail("");
+      setSelectedEvent("");
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Oops!",
+        description: error.message || "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleRegister = (eventTitle: string) => {
+    setSelectedEvent(eventTitle);
+    setNotifyOpen(true);
+  };
+
+  const handleSubmitNotify = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (notifyEmail && selectedEvent) {
+      notifyMutation.mutate({ email: notifyEmail, product: `event-${selectedEvent}` });
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-foreground text-background">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-foreground/80 backdrop-blur-md border-b border-border/20">
+        <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+          <Link href="/" className="flex items-center" data-testid="link-home-events">
+            <img src={logoImage} alt="SH Logo" className="h-14 w-auto" data-testid="img-logo-events" />
+          </Link>
+          <div className="hidden md:flex items-center gap-8">
+            <Link href="/" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-back-home-events">
+              ← Back to Portfolio
+            </Link>
+          </div>
+          <Button size="sm" className="bg-pink-500 hover:bg-pink-600 text-white" onClick={() => { setSelectedEvent("All Events"); setNotifyOpen(true); }} data-testid="button-notify-nav">
+            Get Notified
+          </Button>
+        </nav>
+      </header>
+
+      <section className="pt-40 pb-20 px-6 bg-foreground relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 right-1/4 w-96 h-96 bg-pink-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-pink-500/5 rounded-full blur-3xl" />
+        </div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Badge className="mb-6 bg-pink-500/20 text-pink-400 border border-pink-500/30 px-4 py-1 text-sm" data-testid="badge-events">
+              Events & Community
+            </Badge>
+            <h1 className="text-5xl md:text-7xl font-bold text-background leading-tight mb-6" data-testid="text-events-heading">
+              Learn Together,{" "}
+              <span className="text-pink-500">Grow Together</span>
+            </h1>
+            <p className="text-lg md:text-xl text-background/70 max-w-2xl leading-relaxed mb-10" data-testid="text-events-subheading">
+              Workshops, webinars, and networking events for L&D professionals ready to level up. All hosted by Shawny Hargrove and the DreamTech Connect team.
+            </p>
+            <div className="flex flex-wrap gap-6">
+              <div className="flex items-center gap-2 text-background/60 text-sm">
+                <Calendar className="h-4 w-4 text-pink-500" />
+                <span data-testid="text-stat-upcoming">{upcomingEvents.length} Upcoming Events</span>
+              </div>
+              <div className="flex items-center gap-2 text-background/60 text-sm">
+                <Video className="h-4 w-4 text-pink-500" />
+                <span>Virtual & In-Person</span>
+              </div>
+              <div className="flex items-center gap-2 text-background/60 text-sm">
+                <Users className="h-4 w-4 text-pink-500" />
+                <span>Built for L&D Professionals</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {upcomingEvents.filter(e => e.featured).map((event) => (
+        <section key={event.id} className="py-12 px-6 bg-pink-500/10 border-y border-pink-500/20">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col md:flex-row md:items-center gap-8"
+              data-testid={`featured-event-${event.id}`}
+            >
+              <div className="flex-grow">
+                <div className="flex items-center gap-3 mb-3">
+                  <Badge className="bg-pink-500 text-white border-0 text-xs">Featured Event</Badge>
+                  <span className={`text-xs px-2 py-1 rounded-full border font-medium ${categoryColors[event.category]}`}>
+                    {event.category}
+                  </span>
+                  <Badge variant="outline" className="text-xs border-border/50 text-background/60">
+                    {event.type === "Virtual" ? <Video className="h-3 w-3 mr-1 inline" /> : <MapPin className="h-3 w-3 mr-1 inline" />}
+                    {event.type}
+                  </Badge>
+                </div>
+                <h2 className="text-2xl md:text-3xl font-semibold text-background mb-3" data-testid={`text-featured-title-${event.id}`}>
+                  {event.title}
+                </h2>
+                <p className="text-background/70 text-sm leading-relaxed mb-4 max-w-2xl" data-testid={`text-featured-desc-${event.id}`}>
+                  {event.description}
+                </p>
+                <div className="flex flex-wrap gap-4 text-sm text-background/60">
+                  <span className="flex items-center gap-1.5"><Calendar className="h-4 w-4 text-pink-400" />{event.date}</span>
+                  <span className="flex items-center gap-1.5"><Clock className="h-4 w-4 text-pink-400" />{event.time}</span>
+                  <span className="flex items-center gap-1.5"><MapPin className="h-4 w-4 text-pink-400" />{event.location}</span>
+                  <span className="flex items-center gap-1.5"><Users className="h-4 w-4 text-pink-400" />{event.seats}</span>
+                </div>
+              </div>
+              <div className="shrink-0">
+                <Button size="lg" className="bg-pink-500 hover:bg-pink-600 text-white group" onClick={() => handleRegister(event.title)} data-testid={`button-register-featured-${event.id}`}>
+                  Register Now
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      ))}
+
+      <section className="py-24 px-6 bg-background text-foreground">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-medium mb-4" data-testid="text-upcoming-title">Upcoming Events</h2>
+            <p className="text-muted-foreground max-w-2xl" data-testid="text-upcoming-desc">
+              Register your spot — many events have limited availability.
+            </p>
+          </motion.div>
+
+          <div className="flex flex-col gap-6">
+            {upcomingEvents.map((event, index) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.07 }}
+                data-testid={`card-event-${event.id}`}
+              >
+                <Card className="border border-border hover:border-pink-500/50 transition-all duration-300 hover:shadow-md hover:shadow-pink-500/5">
+                  <CardContent className="p-6 flex flex-col md:flex-row md:items-center gap-6">
+                    <div className="shrink-0 text-center md:text-left md:w-36">
+                      <div className="text-pink-500 font-bold text-lg leading-tight" data-testid={`text-event-date-${event.id}`}>
+                        {event.date.split(",")[0]}
+                      </div>
+                      <div className="text-muted-foreground text-sm">
+                        {event.date.split(", ")[1]}
+                      </div>
+                      <div className="text-muted-foreground text-xs mt-1">{event.time.split(" – ")[0]}</div>
+                    </div>
+
+                    <div className="w-px bg-border hidden md:block self-stretch" />
+
+                    <div className="flex-grow">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <span className={`text-xs px-2 py-1 rounded-full border font-medium ${categoryColors[event.category]}`}>
+                          {event.category}
+                        </span>
+                        <span className="text-xs text-muted-foreground flex items-center gap-1">
+                          {event.type === "Virtual"
+                            ? <><Video className="h-3 w-3" /> Virtual</>
+                            : <><MapPin className="h-3 w-3" /> In-Person</>}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-semibold mb-2 text-foreground" data-testid={`text-event-title-${event.id}`}>
+                        {event.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed mb-3" data-testid={`text-event-desc-${event.id}`}>
+                        {event.description}
+                      </p>
+                      <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
+                        <span className="flex items-center gap-1"><MapPin className="h-3 w-3" />{event.location}</span>
+                        <span className="flex items-center gap-1"><Users className="h-3 w-3" />{event.seats}</span>
+                      </div>
+                    </div>
+
+                    <div className="shrink-0">
+                      <Button
+                        variant="outline"
+                        className="border-pink-500/50 text-pink-500 hover:bg-pink-500 hover:text-white transition-colors"
+                        onClick={() => handleRegister(event.title)}
+                        data-testid={`button-register-${event.id}`}
+                      >
+                        Register
+                        <ExternalLink className="ml-2 h-3.5 w-3.5" />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-6 bg-muted/30 border-t border-border text-foreground">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-10"
+          >
+            <h2 className="text-2xl md:text-3xl font-medium mb-2" data-testid="text-past-title">Past Events</h2>
+            <p className="text-muted-foreground text-sm">A look back at what we've hosted.</p>
+          </motion.div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {pastEvents.map((event, index) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                data-testid={`card-past-event-${event.id}`}
+              >
+                <Card className="border border-border/50 bg-background opacity-80">
+                  <CardContent className="p-5">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className={`text-xs px-2 py-1 rounded-full border font-medium ${categoryColors[event.category]}`}>
+                        {event.category}
+                      </span>
+                      <span className="text-xs text-muted-foreground">{event.date}</span>
+                    </div>
+                    <h3 className="font-medium text-sm text-foreground mb-2" data-testid={`text-past-title-${event.id}`}>{event.title}</h3>
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        {event.type === "Virtual" ? <Video className="h-3 w-3" /> : <MapPin className="h-3 w-3" />}
+                        {event.type}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Users className="h-3 w-3" />{event.attendees} attended
+                      </span>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 px-6 bg-foreground text-background text-center">
+        <div className="max-w-2xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <Bell className="h-10 w-10 text-pink-400 mx-auto mb-4" />
+            <h2 className="text-2xl md:text-3xl font-semibold mb-4" data-testid="text-notify-heading">
+              Never miss an event
+            </h2>
+            <p className="text-background/70 mb-8">
+              Sign up and we'll send you event announcements, early access, and registration reminders straight to your inbox.
+            </p>
+            <Button size="lg" className="bg-pink-500 hover:bg-pink-600 text-white group" onClick={() => { setSelectedEvent("All Events"); setNotifyOpen(true); }} data-testid="button-notify-footer">
+              Notify Me of New Events
+              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      <footer className="py-8 bg-foreground border-t border-border/20 text-center text-background/50 text-sm">
+        <p data-testid="text-events-footer">&copy; {new Date().getFullYear()} Shawny Hargrove · DreamTech Connect</p>
+      </footer>
+
+      <Dialog open={notifyOpen} onOpenChange={setNotifyOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Bell className="h-5 w-5 text-pink-500" />
+              {selectedEvent === "All Events" ? "Get Event Notifications" : "Register for Event"}
+            </DialogTitle>
+            <DialogDescription>
+              {selectedEvent === "All Events"
+                ? "Enter your email and we'll keep you updated on all upcoming events."
+                : `Enter your email to register for "${selectedEvent}". We'll send you details and a reminder before the event.`}
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleSubmitNotify} className="flex flex-col gap-4">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={notifyEmail}
+              onChange={(e) => setNotifyEmail(e.target.value)}
+              required
+              data-testid="input-notify-email"
+            />
+            <Button
+              type="submit"
+              className="bg-pink-500 hover:bg-pink-600 text-white"
+              disabled={notifyMutation.isPending}
+              data-testid="button-submit-notify"
+            >
+              {notifyMutation.isPending ? "Registering..." : selectedEvent === "All Events" ? "Notify Me" : "Register"}
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
