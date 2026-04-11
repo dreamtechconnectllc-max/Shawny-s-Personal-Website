@@ -10,7 +10,7 @@ import { Link } from "wouter";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import logoImage from "@assets/New_DreamTech_Logos_1769121798107.png";
+import logoImage from "@assets/SH_logo_pink.png";
 
 const upcomingEvents = [
   {

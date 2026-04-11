@@ -13,7 +13,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import shawnyImage from "@assets/Untitled_design_(4)_1769115041947.png";
-import logoImage from "@assets/New_DreamTech_Logos_1769121798107.png";
+import logoImage from "@assets/SH_logo_pink.png";
 
 const projects = [
   {
