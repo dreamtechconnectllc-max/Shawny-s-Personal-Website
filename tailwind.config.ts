@@ -11,6 +11,20 @@ export default {
         sm: ".1875rem", /* 3px */
       },
       colors: {
+        // Custom brand pink — overrides Tailwind's default pink palette
+        pink: {
+          "50":  "#fde8fc",
+          "100": "#fbd1f9",
+          "200": "#f7a3f3",
+          "300": "#f375ed",
+          "400": "#fa7ef1",
+          "500": "#f85aed",
+          "600": "#e030d6",
+          "700": "#b824aa",
+          "800": "#90197f",
+          "900": "#6a1260",
+          "950": "#440b3e",
+        },
         // Flat / base colors (regular buttons)
         background: "hsl(var(--background) / <alpha-value>)",
         foreground: "hsl(var(--foreground) / <alpha-value>)",
