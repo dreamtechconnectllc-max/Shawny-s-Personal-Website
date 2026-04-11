@@ -423,7 +423,7 @@ export default function Home() {
               Let's Connect
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8" data-testid="text-contact-description">
-              Ready to transform your team's learning experience? Book a 15-minute discovery call to discuss your L&D goals.
+              Let's connect via social media.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button
