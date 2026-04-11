@@ -7,7 +7,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck, GraduationCap, Star, CalendarDays, ChevronDown, ShoppingBag, BookOpen } from "lucide-react";
+import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck, GraduationCap, Star, CalendarDays, ChevronDown, ShoppingBag, BookOpen, Mail, Linkedin } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
@@ -422,9 +422,34 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-medium mb-6" data-testid="text-contact-title">
               Let's Connect
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-contact-description">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8" data-testid="text-contact-description">
               Ready to transform your team's learning experience? Book a 15-minute discovery call to discuss your L&D goals.
             </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Button
+                size="lg"
+                className="bg-[#0A66C2] hover:bg-[#0958a8] text-white gap-2"
+                asChild
+                data-testid="button-linkedin"
+              >
+                <a href="https://www.linkedin.com/in/shawnyhargrove" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="h-5 w-5" />
+                  Connect on LinkedIn
+                </a>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-pink-500/50 text-pink-500 hover:bg-pink-500 hover:text-white gap-2 transition-colors"
+                asChild
+                data-testid="button-email"
+              >
+                <a href="mailto:shawny@dreamtechconnect.io">
+                  <Mail className="h-5 w-5" />
+                  Send an Email
+                </a>
+              </Button>
+            </div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
