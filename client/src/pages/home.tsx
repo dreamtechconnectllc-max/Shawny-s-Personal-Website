@@ -7,12 +7,13 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck, GraduationCap, Star, CalendarDays, ChevronDown, ShoppingBag, BookOpen, Mail, Linkedin } from "lucide-react";
+import { ArrowRight, ExternalLink, Sparkles, BarChart3, Target, Play, TrendingUp, FileSearch, ClipboardCheck, PenTool, GraduationCap, Star, CalendarDays, ChevronDown, ShoppingBag, BookOpen, FileText, Mail, Linkedin } from "lucide-react";
+import { SiSubstack, SiYoutube, SiTiktok } from "react-icons/si";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
-import shawnyImage from "@assets/Untitled_design_(4)_1769115041947.png";
+import shawnyImage from "@assets/New With me smiling.png";
 import logoImage from "@assets/SH_logo_pink.png";
 
 const projects = [
@@ -45,10 +46,10 @@ const projects = [
 
 const aiProducts = [
   {
-    id: "connect-roi",
-    title: "ConnectROI",
-    description: "Measure and demonstrate proof of ROI for learning solutions provided to stakeholders and decision makers. Show the real business impact of your L&D investments.",
-    icon: TrendingUp,
+    id: "connect-author",
+    title: "ConnectAuthor",
+    description: "Design and build learning content faster with AI-assisted authoring. Turn your expertise into structured, engaging courses and training materials.",
+    icon: PenTool,
   },
   {
     id: "connect-analysis",
@@ -56,12 +57,19 @@ const aiProducts = [
     description: "Conduct comprehensive training needs analysis with AI-powered insights. Get detailed reports on whether training is needed and recommended next steps.",
     icon: FileSearch,
   },
-  {
-    id: "connect-observation",
-    title: "ConnectObservation",
-    description: "A reinforcement tool for managers to conduct certification observations, demonstrating how to perform specific duties or jobs to reinforce learning.",
-    icon: ClipboardCheck,
-  },
+  // Hidden for now — restore to show these products
+  // {
+  //   id: "connect-roi",
+  //   title: "ConnectROI",
+  //   description: "Measure and demonstrate proof of ROI for learning solutions provided to stakeholders and decision makers. Show the real business impact of your L&D investments.",
+  //   icon: TrendingUp,
+  // },
+  // {
+  //   id: "connect-observation",
+  //   title: "ConnectObservation",
+  //   description: "A reinforcement tool for managers to conduct certification observations, demonstrating how to perform specific duties or jobs to reinforce learning.",
+  //   icon: ClipboardCheck,
+  // },
 ];
 
 export default function Home() {
@@ -170,9 +178,30 @@ export default function Home() {
           </a>
           <div className="hidden md:flex items-center gap-8">
             <a href="#about" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-about">About</a>
-            <a href="#projects" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-projects">Projects</a>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-1 text-sm text-background/70 hover:text-pink-500 transition-colors outline-none" data-testid="dropdown-projects">
+                Projects
+                <ChevronDown className="h-3.5 w-3.5 mt-0.5" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="min-w-[200px]">
+                <DropdownMenuItem asChild data-testid="dropdown-item-course-samples">
+                  <a href="/course-samples" className="flex items-center gap-2 cursor-pointer">
+                    <GraduationCap className="h-4 w-4 text-pink-500" />
+                    Course Samples
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild data-testid="dropdown-item-skills">
+                  <a href="/skills" className="flex items-center gap-2 cursor-pointer">
+                    <FileText className="h-4 w-4 text-pink-500" />
+                    Downloadable Skill.md's
+                  </a>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <a href="#ld-ai-products" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-ld-ai-products">L&D AI Products</a>
+            {/* Hidden for now — restore to show Events in the nav
             <a href="/events" className="text-sm text-background/70 hover:text-pink-500 transition-colors" data-testid="link-events">Events</a>
+            */}
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1 text-sm text-pink-500 hover:text-pink-400 font-medium transition-colors outline-none" data-testid="dropdown-store">
                 <ShoppingBag className="h-4 w-4" />
@@ -182,7 +211,7 @@ export default function Home() {
               <DropdownMenuContent align="end" className="min-w-[160px]">
                 <DropdownMenuItem
                   className="cursor-pointer gap-2"
-                  onSelect={() => setCoursesModalOpen(true)}
+                  onSelect={() => setTimeout(() => setCoursesModalOpen(true), 0)}
                   data-testid="dropdown-item-courses"
                 >
                   <GraduationCap className="h-4 w-4 text-pink-500" />
@@ -194,6 +223,7 @@ export default function Home() {
                     Books
                   </a>
                 </DropdownMenuItem>
+                {/* Hidden for now — restore to show Services in the Store menu
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild data-testid="dropdown-item-services">
                   <a href="https://dreamtechconnect.io" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 cursor-pointer">
@@ -201,6 +231,7 @@ export default function Home() {
                     Services
                   </a>
                 </DropdownMenuItem>
+                */}
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -248,11 +279,19 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="mt-8"
             >
-              <Button size="lg" className="bg-background text-foreground hover:bg-background/90" asChild data-testid="button-cta-hero">
-                <a href="#contact">
-                  Let's Connect!
-                  <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                </a>
+              <Button
+                size="lg"
+                className="bg-background text-foreground hover:bg-background/90"
+                onClick={() => {
+                  const el = document.getElementById("contact");
+                  if (el) {
+                    window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 88, behavior: "smooth" });
+                  }
+                }}
+                data-testid="button-cta-hero"
+              >
+                Let's Connect!
+                <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
               </Button>
             </motion.div>
           </div>
@@ -263,7 +302,7 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="absolute -right-64 md:-right-56 lg:-right-48 xl:-right-40 bottom-0 z-20 h-[75vh] md:h-[85vh] lg:h-[90vh]"
+          className="absolute -right-20 md:-right-56 lg:-right-48 xl:-right-40 bottom-0 z-20 h-[45vh] md:h-[65vh] lg:h-[90vh]"
         >
           <img 
             src={shawnyImage}
@@ -297,19 +336,25 @@ export default function Home() {
                 If you're building training from scratch, leveling up your people, or need proof that L&D is moving the business forward, let's connect.
               </p>
             </div>
-            <div className="relative aspect-video bg-muted rounded-xl overflow-hidden" data-testid="video-about-container">
-              <div className="absolute inset-0 flex items-center justify-center bg-foreground/5">
-                <div className="w-20 h-20 rounded-full bg-pink-500 flex items-center justify-center cursor-pointer hover:bg-pink-600 transition-colors">
-                  <Play className="h-8 w-8 text-white ml-1" fill="white" />
-                </div>
-              </div>
-              <p className="absolute bottom-4 left-4 text-sm text-muted-foreground">About Me Video Coming Soon</p>
+            <div className="relative aspect-video bg-foreground rounded-xl overflow-hidden shadow-lg" data-testid="video-about-container">
+              {/* Web copy of attached_assets/About_Me_Website.mp4 (720p, compressed for fast loading) */}
+              <video
+                className="w-full h-full object-cover"
+                src="/videos/about-me.mp4"
+                poster="/videos/about-me-poster.jpg"
+                controls
+                playsInline
+                preload="none"
+                aria-label="About Shawny Hargrove video"
+                data-testid="video-about"
+              />
             </div>
           </motion.div>
         </div>
       </section>
 
 
+      {/* Hidden for now — restore to show the Featured Projects section
       <section id="projects" className="py-24 bg-background text-foreground">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
@@ -369,6 +414,7 @@ export default function Home() {
           </Carousel>
         </div>
       </section>
+      */}
 
       <section id="ld-ai-products" className="py-24 bg-foreground text-background">
         <div className="max-w-7xl mx-auto px-6">
@@ -387,7 +433,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="grid md:grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 gap-8"
           >
             {aiProducts.map((product, index) => (
               <Card key={product.id} className="h-full border-2 border-border/50 hover:border-pink-500 transition-colors duration-300 flex flex-col" data-testid={`card-ld-product-${index}`}>
@@ -410,7 +456,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="py-24 bg-background text-foreground">
+      <section id="contact" className="py-24 bg-background text-foreground" style={{ scrollMarginTop: "88px" }}>
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -434,7 +480,42 @@ export default function Home() {
               >
                 <a href="https://www.linkedin.com/in/shawnyhargrove" target="_blank" rel="noopener noreferrer">
                   <Linkedin className="h-5 w-5" />
-                  Connect on LinkedIn
+                  LinkedIn
+                </a>
+              </Button>
+              <Button
+                size="lg"
+                className="bg-[#FF0000] hover:bg-[#cc0000] text-white gap-2"
+                asChild
+                data-testid="button-youtube"
+              >
+                <a href="https://www.youtube.com/@shawnyhargrove" target="_blank" rel="noopener noreferrer">
+                  <SiYoutube className="h-5 w-5" />
+                  YouTube
+                </a>
+              </Button>
+              {/* Hidden for now — restore to show TikTok
+              <Button
+                size="lg"
+                className="bg-black hover:bg-neutral-800 text-white gap-2"
+                asChild
+                data-testid="button-tiktok"
+              >
+                <a href="https://www.tiktok.com/@shawnyhargrove" target="_blank" rel="noopener noreferrer">
+                  <SiTiktok className="h-5 w-5" />
+                  TikTok
+                </a>
+              </Button>
+              */}
+              <Button
+                size="lg"
+                className="bg-[#FF6719] hover:bg-[#e55a10] text-white gap-2"
+                asChild
+                data-testid="button-substack"
+              >
+                <a href="https://shawnyhargrove.substack.com" target="_blank" rel="noopener noreferrer">
+                  <SiSubstack className="h-5 w-5" />
+                  Substack
                 </a>
               </Button>
               <Button

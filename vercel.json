@@ -1,0 +1,13 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/public",
+  "functions": {
+    "api/skill-request.ts": { "includeFiles": "skills/**" }
+  },
+  "rewrites": [
+    { "source": "/api/waitlist", "destination": "/api/waitlist" },
+    { "source": "/api/skill-request", "destination": "/api/skill-request" },
+    { "source": "/api/preorder", "destination": "/api/preorder" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
